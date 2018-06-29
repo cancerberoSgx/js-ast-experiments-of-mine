@@ -1,0 +1,18 @@
+{
+  "name": "recasttest1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ast-types": "^0.11.5",
+    "esprima": "^4.0.0",
+    "jscodeshift": "^0.5.1",
+    "recast": "^0.15.0"
+  }
+}
