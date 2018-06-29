@@ -1,4 +1,4 @@
-// module.exports = function(config = {}){
+module.exports = function(config = {}){
 
 // switch first two parameters of function declarations with name `add` 
 var recast = require("recast");
@@ -44,4 +44,4 @@ var output = recast.print(ast).code;
 return {output}
 // console.log(output);
 
-// }
+}

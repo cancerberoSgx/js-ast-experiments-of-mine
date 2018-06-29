@@ -1,4 +1,5 @@
-// parse typescript using recast. 
+module.exports = function(config = {}){
+// parse typescript using recast. prints back the code and prints Ts AST in the console
 var recast = require("recast");
 
 var code = `
@@ -15,8 +16,10 @@ var ast = recast.parse(code, {
     parser: require("recast/parsers/typescript")
 });
 
-console.log(JSON.stringify(ast))
+console.log(ast)
 
 var output = recast.print(ast).code;
 
-console.log(output);
+// console.log(output);
+return {output}
+}

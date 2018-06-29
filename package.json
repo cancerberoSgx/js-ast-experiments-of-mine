@@ -1,14 +1,17 @@
 {
   "name": "recasttest1",
   "version": "1.0.0",
-  "description": "",
+  "description": "experiments and editable demos with JavaScript AST related technologies like recast, jscodeshift, ast-types, etc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":"tsc",
+    "cp": "mkdir -p static && cp -r ./src/static/* static",
+    "bundle": "browserify src/index.js -o static/src.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
+  "keywords": ["JavaScript", "parse", "AST", "transverse", "TypeScript"],
+  "author": "Sebastian Gurin",
+  "license": "MIT",
   "dependencies": {
     "ast-types": "^0.11.5",
     "esprima": "^4.0.0",
