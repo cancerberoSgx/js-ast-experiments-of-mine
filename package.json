@@ -1,21 +1,34 @@
 {
-  "name": "recasttest1",
+  "name": "js-ast-experiments-of-mine",
   "version": "1.0.0",
   "description": "experiments and editable demos with JavaScript AST related technologies like recast, jscodeshift, ast-types, etc",
   "main": "index.js",
   "scripts": {
-    "build":"tsc",
-    "cp": "mkdir -p static && cp -r ./src/static/* static",
-    "bundle": "browserify src/index.js -o static/src.js"
+    "cp": "cp -r ./src/static/* static",
+    "browserify": "browserify src/index.js -o static/src.js",
+    "all": "rm -rf static docs && mkdir -p static && npm run browserify && npm run cp"
   },
   "private": true,
-  "keywords": ["JavaScript", "parse", "AST", "transverse", "TypeScript"],
+  "keywords": [
+    "JavaScript",
+    "parse",
+    "AST",
+    "transverse",
+    "TypeScript"
+  ],
   "author": "Sebastian Gurin",
   "license": "MIT",
   "dependencies": {
     "ast-types": "^0.11.5",
     "esprima": "^4.0.0",
+    "handlebars": "^4.0.11",
     "jscodeshift": "^0.5.1",
     "recast": "^0.15.0"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.0.0-beta.51",
+    "browserify": "^16.2.2",
+    "browser-sync": "^2.24.4",
+    "concurrently": "^3.6.0"
   }
 }

@@ -12,4 +12,8 @@ const examples = [
     description: "Parse TypeScript using recast. prints back the code and prints Ts AST in the console" 
   }
 ]
-console.log('output: ' + output);
+
+const {render} = require('./ui')
+const context = {examples}
+
+console.log('output: ' + render(context));
