@@ -1,8 +1,9 @@
 import React from 'react';
 import { examples } from '../examples';
 import { dispatchSelectExample } from '../controller';
+import { State } from '../types';
 
-export default (context) =>
+export default (state: State) =>
   <nav className={"navbar navbar-expand-md navbar-dark bg-dark"}>
     <button className={"navbar-toggler"} type="button" data-toggle="collapse" tabIndex={1} data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
       <span className={"navbar-toggler-icon"}></span>

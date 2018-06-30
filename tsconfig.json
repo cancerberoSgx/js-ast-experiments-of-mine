@@ -4,18 +4,18 @@
     "module": "commonjs", 
     "moduleResolution": "node",
     "jsx": "react",
-    "lib": ["es2018", "dom"],
+    "lib": ["es6", "dom"],
     "outDir": "./dist", 
     "rootDir": ".",
     "strict": true, 
     "strictNullChecks": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "sourceMap": true,
     "esModuleInterop": true,
     "declaration": true,
     "skipLibCheck": true
   }, 
-  "include": [
+  "include": [  
     "src"
   ]
 }

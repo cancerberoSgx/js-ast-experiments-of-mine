@@ -7,7 +7,7 @@ export function exampleToProject(e: Example): AbstractProject {
     files: [
       {
         fileName: 'src/' + require('filenamify')(e.name) + '.js',
-        content: e.execute.toString(),
+        content: 'const execute = '+e.execute.toString(),
         isDirectory: false
       }
     ]
