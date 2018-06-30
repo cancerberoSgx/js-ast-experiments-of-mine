@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "cp": "cp -r ./src/static/* static",
-    "browserify": "browserify src/index.js -o static/src.js",
-    "all": "rm -rf static docs && mkdir -p static && npm run browserify && npm run cp"
+    "build": "browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
+    "all": "rm -rf static docs && mkdir -p static && npm run browserify && npm run cp",
+    "watch": "watch -p \"src/**/*\" -c \"npm run build\"",
+    "minify": "google-closure-compiler --js=static/src.js --js_output_file=static/src.min.js && mv static/src.min.js static/src.js",
+    "browser-sync": "browser-sync start -s static -w -f \"static/*\"",
+    "dev": "npm run build && concurrently --kill-others \"npm run watch\" \"npm run browser-sync\""
   },
   "private": true,
   "keywords": [
@@ -20,15 +24,21 @@
   "license": "MIT",
   "dependencies": {
     "ast-types": "^0.11.5",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
     "esprima": "^4.0.0",
     "handlebars": "^4.0.11",
     "jscodeshift": "^0.5.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "recast": "^0.15.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.0.0-beta.51",
     "browserify": "^16.2.2",
     "browser-sync": "^2.24.4",
-    "concurrently": "^3.6.0"
+    "concurrently": "^3.6.0",
+    "watch-cli": "^0.2.3",
+    "google-closure-compiler": "^20180610.0.2"
   }
 }
