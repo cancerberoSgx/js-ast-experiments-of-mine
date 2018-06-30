@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cp": "cp -r ./src/static/* static",
-    "build": "browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
+    "build": "npm run cp && mkdir -p static && browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
     "all": "rm -rf static docs && mkdir -p static && npm run browserify && npm run cp",
     "watch": "watch -p \"src/**/*\" -c \"npm run build\"",
     "minify": "google-closure-compiler --js=static/src.js --js_output_file=static/src.min.js && mv static/src.min.js static/src.js",

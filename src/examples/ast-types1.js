@@ -1,3 +1,5 @@
+module.exports = function(config = {}){
+
 // uses ast-types to transverse AST and modify it: adds an statement  
 // var superArgs = Array.prototype.slice.call(arguments, 2); as first child of 
 // each function declaration body
@@ -62,4 +64,6 @@ types.visit(ast, {
 
 var output = recast.print(ast).code;
 
-console.log(output);
+// console.log(output);
+return {output}
+}
