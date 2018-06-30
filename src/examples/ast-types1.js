@@ -9,7 +9,7 @@ var recast = require("recast");
 var n = types.namedTypes;
 var b = types.builders;
 
-var code = `
+var code = config.code || `
 const foo = 1
 function f(){foo++; f()}
 let i = [].map(function(a){return a++})

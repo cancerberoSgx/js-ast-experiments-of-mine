@@ -6,3 +6,5 @@
 .module-cache
 __tests__
 yarn.lock
+/docs
+/docs2

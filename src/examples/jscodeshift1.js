@@ -3,7 +3,7 @@ module.exports = function(config = {}){
 // use jscodeshift to rename the id `foo` to `var`
 var jscodeshift = require('jscodeshift')
 
-var code =`
+var code = config.code || `
 const foo = 1
 function f(){foo++; f()}
 var a = foo+1

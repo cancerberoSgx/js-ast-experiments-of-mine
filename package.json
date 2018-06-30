@@ -4,13 +4,16 @@
   "description": "experiments and editable demos with JavaScript AST related technologies like recast, jscodeshift, ast-types, etc",
   "main": "index.js",
   "scripts": {
-    "cp": "cp -r ./src/static/* static",
-    "build": "npm run cp && mkdir -p static && browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
-    "all": "rm -rf static docs && mkdir -p static && npm run browserify && npm run cp",
+    "copy": "mkdir -p static && cp -r src/static/* static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js static",
+    "build": "mkdir -p static && npm run copy &&  browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
+    "all": "",
     "watch": "watch -p \"src/**/*\" -c \"npm run build\"",
     "minify": "google-closure-compiler --js=static/src.js --js_output_file=static/src.min.js && mv static/src.min.js static/src.js",
+    "build-production": "rm -rf static docs src/build && bankai build src/index.js && rm -rf static dist docs & mv src/dist static && npm run copy && mv static docs",
+    "build-production2": "rm -rf static docs2 && npm run build && npm run minify && npm run copy && mv static docs2",
     "browser-sync": "browser-sync start -s static -w -f \"static/*\"",
-    "dev": "npm run build && concurrently --kill-others \"npm run watch\" \"npm run browser-sync\""
+    "dev": "npm run build && concurrently --kill-others \"npm run watch\" \"npm run browser-sync\"",
+    "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; find . -name \"package-lock.json\" -exec rm -rf '{}' +; "
   },
   "private": true,
   "keywords": [
@@ -24,21 +27,22 @@
   "license": "MIT",
   "dependencies": {
     "ast-types": "^0.11.5",
-    "babel-preset-react": "^6.24.1",
-    "babelify": "^8.0.0",
     "esprima": "^4.0.0",
-    "handlebars": "^4.0.11",
     "jscodeshift": "^0.5.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "recast": "^0.15.0"
+    "recast": "^0.15.0",
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "@babel/parser": "^7.0.0-beta.51",
-    "browserify": "^16.2.2",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
     "browser-sync": "^2.24.4",
+    "browserify": "^16.2.2",
     "concurrently": "^3.6.0",
-    "watch-cli": "^0.2.3",
-    "google-closure-compiler": "^20180610.0.2"
+    "google-closure-compiler": "^20180610.0.2",
+    "watch-cli": "^0.2.3"
   }
 }

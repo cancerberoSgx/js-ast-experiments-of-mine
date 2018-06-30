@@ -2,7 +2,7 @@ module.exports = function(config = {}){
 // parse typescript using recast. prints back the code and prints Ts AST in the console
 var recast = require("recast");
 
-var code = `
+var code = config.code || `
 const a: string = 1
 interface I{
     me(s:string):number[]
