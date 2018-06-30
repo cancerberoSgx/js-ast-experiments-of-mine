@@ -4,7 +4,8 @@ export interface JsAstExampleOptions {
   code: string
 }
 export interface JsAstExampleResult {
-  output: string
+  output?: string
+  error?: Error
 }
 export type JsAstExampleExecute = (args: JsAstExampleOptions) => JsAstExampleResult
 export interface Example {
@@ -13,7 +14,8 @@ export interface Example {
   name: string
 }
 export interface State {
-  project: AbstractProject
-  selectedExample: Example
+  inputProject?: AbstractProject
+  outputProject?: AbstractProject
+  selectedExample?: Example
   examples: Example[]
 }

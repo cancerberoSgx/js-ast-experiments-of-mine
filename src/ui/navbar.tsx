@@ -1,6 +1,6 @@
 import React from 'react';
 import { examples } from '../examples';
-import { dispatchSelectExample } from '../controller';
+import { dispatchSelectExample, dispatchExecuteExample } from '../controller';
 import { State } from '../types';
 
 export default (state: State) =>
@@ -20,11 +20,11 @@ export default (state: State) =>
           </div>
         </li>
         <li className={"nav-item dropdown"}>
-          <a className={"nav-link dropdown-toggle"} href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
-          <div className={"dropdown-menu"} aria-labelledby="dropdown06">
+          <a className={"nav-link"} href="#" id="dropdown02"   onClick={()=>dispatchExecuteExample()}>Execute2!</a>
+          {/* <div className={"dropdown-menu"} aria-labelledby="dropdown06"> */}
             {/* <a className={"dropdown-item"}  onClick={()=>getActionManager().installTypes(state.project)}>Install @types</a> */}
             {/* <a className={"dropdown-item"} onClick={()=>{getEmitOutput(state)}}>Emit Output</a> */}
-          </div>
+          {/* </div> */}
         </li>
         <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</a>
