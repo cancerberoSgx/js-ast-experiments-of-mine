@@ -1,8 +1,8 @@
 {
   "name": "js-ast-experiments-of-mine",
   "version": "1.0.0",
-  "description": "experiments and editable demos with JavaScript AST related technologies like recast, jscodeshift, ast-types, etc",
-  "main": "index.js",
+  "description": "Experiments and Online Playground with JavaScript AST related technologies like recast, jscodeshift, ast-types, astring, acorn, escodegen, etc",
+  "main": "src/index.js",
   "scripts": {
     "copy": "mkdir -p static && cp -r src/static/* static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js static",
     "build": "mkdir -p static && npm run copy &&  browserify src/index.js -t [ babelify --presets [ react ] ] -o static/src.js",
