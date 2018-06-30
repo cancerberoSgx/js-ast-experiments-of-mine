@@ -4,28 +4,21 @@ import { examples } from './examples';
 import { State } from './types';
 import layout from './ui/layout';
 import { exampleToProject } from './util';
+import projectEditorContainer from './ui/projectEditorContainer';
 
 loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
 export class OurAwesomeProjectEditor extends Workspace {
-  private container: HTMLElement
-  state: State
+  // state: State
+  constructor(private container: HTMLElement){
+    super()
+  }
   start() {
-    this.state = {
-      selectedExample: examples[0],
-      project: exampleToProject(examples[0]),
-      examples: examples
-    }
-    this.projectChanged(this.state.project)
+    this.projectChanged(getState().project)
     this.render()
   }
   render() {
-    if (!this.container) {
-      this.container = document.createElement('div')
-      this.container.setAttribute('id', 'jsAstExampleAppContainer')
-      document.body.appendChild(this.container)
-    }
-    ReactDOM.render(layout(this.state), this.container)
+    ReactDOM.render(projectEditorContainer(getState(), this.container.getAttribute('id')), this.container)
   }
 
   public selectedFileChanged(fileName: string): void {
@@ -34,7 +27,21 @@ export class OurAwesomeProjectEditor extends Workspace {
     // this.render()
   }
 }
+let state: State = {
+  selectedExample: examples[0],
+  project: exampleToProject(examples[0]),
+  examples
+}
+export function getState():State{
+  return state
+}
 
+// we render the main container that can be rendered because it doesn't depend on monaco, or anything, is just 
+// a skeleton layout that will define the containers for our two workspaces. 
+ReactDOM.render(layout(state), document.getElementById('mainApplicationContainer'))
 
-export const sourceWorkspace = new OurAwesomeProjectEditor()
-sourceWorkspace.setup().then(() => sourceWorkspace.start())
+export const inputWorkspace = new OurAwesomeProjectEditor(document.getElementById('inputWorkspaceContainer'))
+inputWorkspace.setup().then(() => inputWorkspace.start())
+
+export const outputWorkspace = new OurAwesomeProjectEditor(document.getElementById('outputWorkspaceContainer'))
+outputWorkspace.setup().then(() => outputWorkspace.start())
