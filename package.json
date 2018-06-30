@@ -45,7 +45,7 @@
     "filenamify": "^2.1.0",
     "jquery": "^3.3.1",
     "jscodeshift": "^0.5.1",
-    "monaco-typescript-project-util": "file:../../git/typescript-in-the-browser/monaco-typescript-project-util",
+    "monaco-typescript-project-util": "0.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "recast": "^0.15.0",
