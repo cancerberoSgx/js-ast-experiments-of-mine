@@ -8,23 +8,17 @@ export const examples: Example[] = [
   buildJsCodeMode('js-codemod/template-literals.js'),
   buildJsCodeMode('js-codemod/arrow-function.js'), 
   { 
-    name: 'jscodeshift function to arrow function safely TypeScript',
-    programFileName: 'jscodeshift_function-expression-to-arrow-function-expression.js',
-    inputCodeFileName: 'jscodeshift_function-expression-to-arrow-function-expression_inputCode.js',
+    name: 'js-transforms function to arrow function',
+    programFileName: 'js-transforms/function-expression-to-arrow-function-expression.js',
+    inputCodeFileName: 'js-transforms/function-expression-to-arrow-function-expression_inputCode.js',
     description: `Uses jscodeshift to transform FunctionExpression to an ArrowFunctionExpression when safe to do so. Taken from https://github.com/jhgg/js-transforms/blob/master/function-expression-to-arrow-function-expression.js`
-  },
+  }, 
 
+  buildJsCodeMode('js-codemod/arrow-function-arguments.js'),
   buildJsCodeMode('js-codemod/object-shorthand.js'),
   buildJsCodeMode('js-codemod/rm-object-assign.js'),
   buildJsCodeMode('js-codemod/unchain-variables.js'),
-  buildJsCodeMode('js-codemod/trailing-commas.js'), 
-
-  {
-    name: 'jscodeshift transform TypeScript',
-    programFileName: 'jscodeshift_transformTs.js',
-    inputCodeFileName: 'jscodeshift_transformTs_inputCode.ts',
-    description: `Uses jscodeshift to transform TypeScript code renaming variable declarations named 'foo' to bar`
-  },
+  buildJsCodeMode('js-codemod/trailing-commas.js'),  
 
   {
     name: 'js-transforms/pure-to-composite-component',
@@ -33,6 +27,12 @@ export const examples: Example[] = [
     description: `For when you've gone too pure and want to go back.`
   },
 
+  {
+    name: 'jscodeshift transform TypeScript',
+    programFileName: 'jscodeshift_transformTs.js',
+    inputCodeFileName: 'jscodeshift_transformTs_inputCode.ts',
+    description: `Uses jscodeshift to transform TypeScript code renaming variable declarations named 'foo' to bar`
+  },
   {
     name: 'recast JavaScript simple 1',
     programFileName: 'recast1.js',

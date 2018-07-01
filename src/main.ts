@@ -5,6 +5,7 @@ import { State } from './types';
 import layout from './ui/layout';
 import projectEditorContainer from './ui/projectEditorContainer';
 import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
+import { verticalPaneChanged } from './ui/layoutPaneResizeUtil';
 
 
 abstract class JsAstAbstractWorkspace extends Workspace {
@@ -57,12 +58,11 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
       this.editor = renderEditor({
         container: this.container,
         file: this.project.files[0],
-        // width: Math.trunc((window.innerWidth) / 2) + 'px',
-        // height: Math.trunc((window.innerHeight) / 2) + 'px',
         monacoEditorOptions: {
           automaticLayout: true
         }
       })
+      setTimeout(() => verticalPaneChanged(0), 600)
     }
     else {
       const file = this.project.files[0]
@@ -124,4 +124,5 @@ programCodeWorkspace.setup()
   .then(() => {
     inputCodeWorkspace.setup()
       .then(() => inputCodeWorkspace.start(getInputCodeProjectFor(getState().selectedExample)))
-  })
+      .then(() => setTimeout(() => verticalPaneChanged(0), 200))
+  }) 

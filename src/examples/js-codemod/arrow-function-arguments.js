@@ -1,8 +1,7 @@
-module.exports = (file, api, options) => {
-  const j = api.jscodeshift;
+module.exports = (file) => {
+  const j = require('jscodeshift')
 
-  const printOptions = options.printOptions || {quote: 'single'};
-  const root = j(file.source);
+  const root = j(file.code);
 
   const ARGUMENTS = 'arguments';
   const ARGS = 'args';
@@ -78,5 +77,5 @@ module.exports = (file, api, options) => {
     .forEach(updateArgumentsCalls)
     .size() > 0;
 
-  return didTransform ? root.toSource(printOptions) : null;
+  return {output: didTransform ? root.toSource({quote: 'single'}) : 'null'};
 };
