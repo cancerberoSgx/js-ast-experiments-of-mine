@@ -5,14 +5,8 @@ export function getExamples(){
 }
 export const examples: Example[] = [
 
-  buildJsCodeMode('js-codemod/template-literals.js'),
   buildJsCodeMode('js-codemod/arrow-function.js'), 
-  { 
-    name: 'js-transforms function to arrow function',
-    programFileName: 'js-transforms/function-expression-to-arrow-function-expression.js',
-    inputCodeFileName: 'js-transforms/function-expression-to-arrow-function-expression_inputCode.js',
-    description: `Uses jscodeshift to transform FunctionExpression to an ArrowFunctionExpression when safe to do so. Taken from https://github.com/jhgg/js-transforms/blob/master/function-expression-to-arrow-function-expression.js`
-  }, 
+  buildJsCodeMode('js-codemod/template-literals.js'),
 
   buildJsCodeMode('js-codemod/arrow-function-arguments.js'),
   buildJsCodeMode('js-codemod/object-shorthand.js'),
@@ -29,6 +23,12 @@ export const examples: Example[] = [
     description: `For when you've gone too pure and want to go back.`
   },
 
+  { 
+    name: 'js-transforms function to arrow function',
+    programFileName: 'js-transforms/function-expression-to-arrow-function-expression.js',
+    inputCodeFileName: 'js-transforms/function-expression-to-arrow-function-expression_inputCode.js',
+    description: `Uses jscodeshift to transform FunctionExpression to an ArrowFunctionExpression when safe to do so. Taken from https://github.com/jhgg/js-transforms/blob/master/function-expression-to-arrow-function-expression.js`
+  }, 
   {
     name: 'jscodeshift transform TypeScript',
     programFileName: 'jscodeshift_transformTs.js',
