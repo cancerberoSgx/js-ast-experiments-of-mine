@@ -2,7 +2,22 @@
   resize: both;
   overflow: auto;
 }
-
+#diffEditorModal .modal .modal-body{
+  max-height: 100%!important;
+  max-width: 100%!important;
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    max-height: 100%!important;
+    max-width:100%!important;
+  }
+}
+#diffEditorContainer {
+  padding: 0px 10px 10px 0px
+}
+#diffEditorContainer .monaco-diff-editor {
+  margin: 0px 10px 10px 0px
+}
 .executeLink {
   font-weight: bolder;
   color: white;
