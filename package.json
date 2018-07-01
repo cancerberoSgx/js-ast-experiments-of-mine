@@ -9,9 +9,10 @@
     "build": "npm run tsc && npm run browserify",
 
     "copy-static": "mkdir -p static && cp -r src/static/* static",
-    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js static && mkdir -p dist/src/examples && cp src/examples/* dist/src/examples ",
+    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js static && mkdir -p dist/src/examples && npm run copy-examples ",
+    "copy-examples": " cp -r src/examples/* dist/src/examples",
 
-    "watch-tsc": "watch -p \"src/**/*\" -c \"npm run tsc\"",
+    "watch-tsc": "watch -p \"src/**/*\" -c \"npm run copy-examples && npm run tsc \"",
     "watch-static": "watch -p \"src/static/**/*\" -c \"npm run copy-static\"",
     "watch-browserify": "watch -p \"dist/src/**/*\" -c \"npm run browserify\"",
     "dev": "npm run copy && npm run build && concurrently --kill-others \"npm run watch-tsc\" \"npm run watch-browserify\" \"npm run browser-sync\" \"npm run watch-static\"",

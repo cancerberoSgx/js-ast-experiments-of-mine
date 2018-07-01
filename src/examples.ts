@@ -5,43 +5,63 @@ export function getExamples(){
   return examples
 }
 export const examples: Example[] = [
+
+  buildJsCodeMode('js-codemod/template-literals.js'),
+  { 
+    name: 'jscodeshift function to arrow function safely TypeScript',
+    programFileName: 'jscodeshift_function-expression-to-arrow-function-expression.js',
+    inputCodeFileName: 'jscodeshift_function-expression-to-arrow-function-expression_inputCode.js',
+    description: `Uses jscodeshift to transform FunctionExpression to an ArrowFunctionExpression when safe to do so. Taken from https://github.com/jhgg/js-transforms/blob/master/function-expression-to-arrow-function-expression.js`
+  },
+  {
+    name: 'jscodeshift transform TypeScript',
+    programFileName: 'jscodeshift_transformTs.js',
+    inputCodeFileName: 'jscodeshift_transformTs_inputCode.ts',
+    description: `Uses jscodeshift to transform TypeScript code renaming variable declarations named 'foo' to bar`
+  },
+
+  {
+    name: 'js-transforms/pure-to-composite-component',
+    programFileName: 'js-transforms/pure-to-composite-component.js',
+    inputCodeFileName: 'js-transforms/pure-to-composite-component_inputCode.js',
+    description: `For when you've gone too pure and want to go back.`
+  },
+
+  buildJsCodeMode('js-codemod/rm-object-assign.js'),
+  buildJsCodeMode('js-codemod/unchain-variables.js'),
+  buildJsCodeMode('js-codemod/trailing-commas.js'),
+
   {
     name: 'recast JavaScript simple 1',
     programFileName: 'recast1.js',
     inputCodeFileName: 'recast1_inputCode.js',
-    // execute: getFiles().find(f=>f.fileName==='recast1_inputCode.js'),// require('./examples/recast1') as any,
     description: "simple example using recast that switch first two parameters of function declarations with name `add` "
   },
-
   {
     name: 'recast TypeScript parsing 1',
     programFileName: 'recast_parsingTs.js',
     inputCodeFileName: 'recast_parsingTs_inputCode.ts',
     outputCodeFileName: 'src/recast_parsingTs_outputCode.ts',
-    // execute: require('./examples/recast_parsingTs'),
     description: "Parse TypeScript using recast. prints back the code and prints Ts AST in the console"
   },
   {
-    name: '(JS) jscodeshift sample 1',
+    name: 'jscodeshift sample 1',
     programFileName: 'jscodeshift1.js',
     inputCodeFileName: 'jscodeshift1_inputCode.js',
-    // execute: require('./examples/jscodeshift1'),
     description: "use jscodeshift to rename the id `foo` to `var`"
   },
   {
-    name: '(JS) ast-types sample 1',
+    name: 'ast-types sample 1',
     programFileName: 'ast-types1.js',
     inputCodeFileName: 'ast-types1_inputCode.js',
-    // execute: require('./examples/ast-types1'),
     description: `Uses ast-types to transverse AST and modify it: adds an statement  \`var superArgs = Array.prototype.slice.call(arguments, 2);\` as first child of each function declaration body`
-  },
-
-  {
-    name: '(TS) codeshift transform TypeScript',
-    programFileName: 'jscodeshift_transformTs.js',
-    inputCodeFileName: 'jscodeshift_transformTs_inputCode.ts',
-    // execute: require('./examples/jscodeshift_transformTs'),
-    description: `Uses jscodeshift to transform TypeScript code renaming variable declarations named 'foo' to bar`
   },
 ]
 
+function buildJsCodeMode(programFileName:string): Example{
+  return {
+    name: programFileName, programFileName, 
+    inputCodeFileName: programFileName.replace('.js', '.input.js'), 
+    description: programFileName
+  }
+}
