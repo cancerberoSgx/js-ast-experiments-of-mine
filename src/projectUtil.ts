@@ -6,13 +6,14 @@ import { Example, JsAstExampleResult } from './types';
 export function getInputProjectFor(e: Example): AbstractProject {
   return {
     name: e.name,
-    files: [
-      {
-        fileName: 'src/' + require('filenamify')(e.name) + '.js',
-        content: 'const execute = ' + e.execute.toString(),
-        isDirectory: false
-      }
-    ]
+    files: getFiles().filter(f=>f.fileName===e.programFileName)
+    // files: [
+    //   {
+    //     fileName: 'src/' + require('filenamify')(e.name) + '.js',
+    //     content: getFiles().find(f=>f.content===e.programFileName). 'const execute = ' + e.execute.toString(),
+    //     isDirectory: false
+    //   }
+    // ]
   }
 }
 export function getInputCodeProjectFor(e: Example): AbstractProject {

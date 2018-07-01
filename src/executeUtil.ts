@@ -20,11 +20,17 @@ export function getModuleExports(code: string): JsAstExampleExecute | { error: E
 export function executeProgram(programCode: string, inputCode: string): JsAstExampleResult {
   let evalResult: JsAstExampleResult
   try {
-    // we set global require() with requireCommons_ (see below) - wrap with try catch and when it ends or
-    // catch, restor the original AMD require()
-    const evalText = '(function(){try{window.require=window.requireCommons_; ' + programCode + ' ;var result__= execute(' + JSON.stringify({ code: inputCode }) + ');window.require = window.requireAmd_;return result__}catch(ex){window.require = window.requireAmd_; throw ex}})()'
+    // // we set global require() with requireCommons_ (see below) - wrap with try catch and when it ends or
+    // // catch, restor the original AMD require()
+    // const evalText = '(function(){try{window.require=window.requireCommons_; ' + programCode + ' ;var result__= execute(' + JSON.stringify({ code: inputCode }) + ');window.require = window.requireAmd_;return result__}catch(ex){window.require = window.requireAmd_; throw ex}})()'
 
-    evalResult = eval(evalText)
+    // evalResult = eval(evalText)
+
+    const exec = getModuleExports(programCode)
+    if((exec as any).error){
+      throw new Error((exec as any).error)
+    }
+    evalResult = (exec as JsAstExampleExecute)({code: inputCode})
   } catch (error) {
     evalResult = { error }
   }

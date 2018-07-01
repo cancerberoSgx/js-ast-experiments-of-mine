@@ -9,7 +9,7 @@ export interface JsAstExampleResult {
 }
 export type JsAstExampleExecute = (args: JsAstExampleOptions) => JsAstExampleResult
 export interface Example {
-  execute: JsAstExampleExecute,
+  // execute: JsAstExampleExecute,
   description: string
   name: string
   programFileName: string

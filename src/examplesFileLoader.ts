@@ -17,11 +17,11 @@ fs2json({
   outputStyle: 'array'
 }).then((files: any) => {
   examples = files
-  examples.forEach(file => { // fix the names
+  examples.forEach(file => {
     file.fileName = file.fileName.substring('dist/src/examples/'.length, file.fileName.length)
   })
 })
 
 export function getFiles(): ExampleFile[] {
-  return examples // heads up - fs2json promise resolves sync so examples will be defined here
+  return examples 
 }
