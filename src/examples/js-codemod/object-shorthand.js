@@ -19,12 +19,11 @@
  *  method() {}
  * }
  */
-module.exports = (file, api, options) => {
-  const j = api.jscodeshift;
-  const printOptions = options.printOptions || {quote: 'single'};
-  const root = j(file.source);
+module.exports = (file) => {
+  const j = require('jscodeshift')
+  const root = j(file.code);
 
-  const isRecursive = (value) => {
+  const isRecursive = (value) => { 
     return !!(
       value.id &&
       j(value.body).find(j.Identifier).filter(
@@ -74,5 +73,5 @@ module.exports = (file, api, options) => {
       }
     });
 
-  return root.toSource(printOptions);
+  return {output: root.toSource({quote: 'single'})};
 };

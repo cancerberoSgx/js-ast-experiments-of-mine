@@ -26,3 +26,4 @@ npm run dev
  * run https://github.com/cpojer/js-codemod/, https://github.com/jhgg/js-transforms, etc
  * be able to edit programs using ts
  * an option to show a diff between codeinput and output
+ * we dont need resize: both not te autolayout of monaco but the later we cannot disable because we dont have an api to est options form util. 

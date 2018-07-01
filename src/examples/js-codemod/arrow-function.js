@@ -1,8 +1,8 @@
-module.exports = (file, api, options) => {
-  const j = api.jscodeshift;
-
-  const printOptions = options.printOptions || {quote: 'single'};
-  const root = j(file.source);
+module.exports = (file) => {
+  const j = require('jscodeshift')
+  const printOptions = {quote: 'single'};
+  const options = {'max-width': 50, 'inline-single-expressions': true}
+  const root = j(file.code);
 
   const getBodyStatement = fn => {
     // 79 characters fit on a line of length 80
@@ -100,5 +100,5 @@ module.exports = (file, api, options) => {
     )
     .size() > 0;
 
-  return replacedBoundFunctions || replacedCallbacks ? root.toSource(printOptions) : null;
+  return {output: replacedBoundFunctions || replacedCallbacks ? root.toSource(printOptions) : 'null'};
 };

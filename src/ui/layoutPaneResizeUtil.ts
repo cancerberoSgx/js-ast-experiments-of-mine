@@ -1,27 +1,31 @@
 import { programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from '../main';
 
-let lastHeight: number
-let lastWidth: number
+let lastHeight: number = 0
+let lastWidth: number = 0
 export function horizontalPaneChanged(h: number) {
-  lastHeight = h
-  lastWidth = lastWidth ||Math.trunc(document.body.clientWidth/2)
-  programCodeWorkspace.setEditorHeight(h)
-  outputWorkspace.setEditorHeight((document.body.clientHeight + 57) - h)
-  inputCodeWorkspace.setEditorHeight((document.body.clientHeight + 57) - h)
-  programCodeWorkspace.setEditorWidth(document.body.clientWidth)
-  outputWorkspace.setEditorWidth(document.body.clientWidth - lastWidth)
+  lastHeight = h || lastHeight
+  lastWidth = lastWidth || Math.trunc(window.innerWidth / 2)
+
+  programCodeWorkspace.setEditorHeight(lastHeight)
+  outputWorkspace.setEditorHeight(window.innerHeight - lastHeight)
+  inputCodeWorkspace.setEditorHeight(window.innerHeight - lastHeight)
+
+  programCodeWorkspace.setEditorWidth(window.innerWidth)
+  outputWorkspace.setEditorWidth(window.innerWidth - lastWidth)
   inputCodeWorkspace.setEditorWidth(lastWidth)
+  console.log('horizontalPaneChanged', {lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight})
 }
 
 export function verticalPaneChanged(w: number) {
-  lastWidth = w | lastWidth
-  lastHeight = lastHeight ||Math.trunc(document.body.clientHeight/2)
-
-  outputWorkspace.setEditorWidth(document.body.clientWidth - lastWidth)
+  lastWidth = w || lastWidth
+  lastHeight = lastHeight || Math.trunc(window.innerHeight / 2)
+  
+  outputWorkspace.setEditorWidth(window.innerWidth - lastWidth)
   inputCodeWorkspace.setEditorWidth(lastWidth)
-  programCodeWorkspace.setEditorWidth(document.body.clientWidth)
+  programCodeWorkspace.setEditorWidth(window.innerWidth)
 
-  outputWorkspace.setEditorHeight((document.body.clientHeight + 57) - lastHeight)
-  inputCodeWorkspace.setEditorHeight(lastHeight + 57)
+  outputWorkspace.setEditorHeight(window.innerHeight - lastHeight)
+  inputCodeWorkspace.setEditorHeight(lastHeight)
   programCodeWorkspace.setEditorHeight(lastHeight)
+  console.log('verticalPaneChanged',{lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight})
 }

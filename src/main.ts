@@ -16,12 +16,14 @@ abstract class JsAstAbstractWorkspace extends Workspace {
     // we will ignore this for now - not important to support navigation between files right now
   }
   setEditorWidth(w: number): any {
+    this.container.style.width = `${w}px`
     const editor = this.container.querySelector<HTMLDivElement>('.editor')
     if (editor) {
       editor.style.width = `${w}px`
     }
   }
   setEditorHeight(h: number): any {
+    this.container.style.height = `${h}px`
     const editor = this.container.querySelector<HTMLDivElement>('.editor')
     if (editor) {
       editor.style.height = `${h}px`
@@ -55,8 +57,11 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
       this.editor = renderEditor({
         container: this.container,
         file: this.project.files[0],
-        width: Math.trunc((document.body.clientWidth) / 2) + 'px',
-        height: Math.trunc((window.innerHeight) / 2) + 'px'
+        // width: Math.trunc((window.innerWidth) / 2) + 'px',
+        // height: Math.trunc((window.innerHeight) / 2) + 'px',
+        monacoEditorOptions: {
+          automaticLayout: true
+        }
       })
     }
     else {
@@ -64,7 +69,7 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
       const model = getMonacoModelFor(file)
       model.setValue(file.content)
       this.editor.monacoEditor.setModel(model)
-      console.log('on render: ', file.fileName, model.uri.fsPath, file.content, model.getValue())
+      // console.log('on render: ', file.fileName, model.uri.fsPath, file.content, model.getValue())
     }
   }
   projectUpdated(project: AbstractProject) {
