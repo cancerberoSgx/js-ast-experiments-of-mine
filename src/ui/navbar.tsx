@@ -2,6 +2,7 @@ import React from 'react';
 import { examples } from '../examples';
 import { dispatchSelectExample, dispatchExecuteExample } from '../controller';
 import { State } from '../types';
+import { showDiffModalHandler } from './diffModal';
 
 export default (state: State) =>
   <nav className={"navbar navbar-expand-md navbar-dark bg-dark"}>
@@ -27,6 +28,26 @@ export default (state: State) =>
               </a>)}
           </div>
         </li>
+
+        <li className={"nav-item dropdown"}>
+          <a className={"nav-link dropdown-toggle"} href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
+          <div className={"dropdown-menu"} aria-labelledby="dropdown01">
+            <a className={"dropdown-item"} href="#" onClick={showDiffModalHandler}>Diff Input &amp; Output</a>
+            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">Other to come</a>
+          </div>
+        </li>
+
+        <li className={"nav-item dropdown"}>
+          <a className={"nav-link dropdown-toggle"} href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
+          <div className={"dropdown-menu"} aria-labelledby="dropdown02">
+            <a className={"dropdown-item"} href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">search examples </a>
+            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">by name</a>
+            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or tag</a>
+            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or language, etc</a>
+            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">not implemented yet</a>
+          </div>
+        </li>
+
 
         <li className="nav-item">
           <a className="nav-link" data-toggle="modal" href="#" data-target="#whatsThisModal">About</a>

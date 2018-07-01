@@ -19,8 +19,8 @@ export const examples: Example[] = [
   buildJsCodeMode('js-codemod/rm-object-assign.js'),
   buildJsCodeMode('js-codemod/unchain-variables.js'),
   buildJsCodeMode('js-codemod/trailing-commas.js'),
-  buildJsCodeMode('js-codemod/no-reassign-params.js'),   
-  buildJsCodeMode('js-codemod/rm-requires.js'),  
+  buildJsCodeMode('js-codemod/no-reassign-params.js'),
+  buildJsCodeMode('js-codemod/rm-requires.js'),
 
   {
     name: 'js-transforms/pure-to-composite-component',

@@ -7,6 +7,7 @@ import whatsThisModal from './whatsThisModal';
 
 import SplitPane from 'react-split-pane';
 import { verticalPaneChanged, horizontalPaneChanged } from './layoutPaneResizeUtil';
+import diffModal from './diffModal';
 
 export default (state: State) =>
   <div >
@@ -35,5 +36,6 @@ export default (state: State) =>
 
     {forkRibbon()}
     {whatsThisModal(state)}
+    {diffModal(state)}
   </div>
 
