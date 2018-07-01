@@ -1,4 +1,4 @@
-import { AbstractProject, Editor, loadMonacoAmdFromExternalCdn, renderEditor, Workspace } from 'monaco-typescript-project-util';
+import { AbstractProject, Editor, loadMonacoAmdFromExternalCdn, renderEditor, Workspace, getMonacoModelFor } from 'monaco-typescript-project-util';
 import ReactDOM from 'react-dom';
 import { examples } from './examples';
 import { State } from './types';
@@ -15,8 +15,6 @@ abstract class JsAstAbstractWorkspace extends Workspace {
   }
   selectedFileChanged(fileName: string): void {
     // we will ignore this for now - not important to support navigation between files right now
-    // this.selectedFile = this.project.files.find(file => file.fileName === fileName) || this.getSelectedFile()
-    // this.render()
   }
   setEditorWidth(w: number): any {
     const editor = this.container.querySelector<HTMLDivElement>('.editor')
@@ -63,7 +61,9 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
       })
     }
     else {
-      this.editor.monacoEditor.setValue(this.project.files[0].content)
+      const file = this.project.files[0]
+      const model = getMonacoModelFor(file)
+      this.editor.monacoEditor.setModel(model)
     }
   }
   projectUpdated(project: AbstractProject) {

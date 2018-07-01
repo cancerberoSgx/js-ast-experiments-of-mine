@@ -16,7 +16,8 @@ export const examples: Example[] = [
   {
     name: 'recast TypeScript parsing 1',
     programFileName: 'recast_parsingTs.js',
-    inputCodeFileName: 'recast_parsingTs_inputCode.js',
+    inputCodeFileName: 'recast_parsingTs_inputCode.ts',
+    outputCodeFileName: 'src/recast_parsingTs_outputCode.ts',
     execute: require('./examples/recast_parsingTs'),
     description: "Parse TypeScript using recast. prints back the code and prints Ts AST in the console"
   },

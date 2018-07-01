@@ -14,6 +14,7 @@ export interface Example {
   name: string
   programFileName: string
   inputCodeFileName: string
+  outputCodeFileName?: string
 }
 export interface State {
   inputProject?: AbstractProject
