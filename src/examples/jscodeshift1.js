@@ -1,17 +1,13 @@
-module.exports = function(config = {}){
+module.exports = function (config) {
 
-// use jscodeshift to rename the id `foo` to `var`
-var jscodeshift = require('jscodeshift')
+  // use jscodeshift to rename the id `foo` to `var`
 
-var code = config.code || `
-const foo = 1
-function f(){foo++; f()}
-var a = foo+1
-`
-const output = jscodeshift(code)
-  .findVariableDeclarators('foo')
-  .renameTo('bar')
-  .toSource();
+  var jscodeshift = require('jscodeshift')
 
-  return {output}
+  const output = jscodeshift(config.code)
+    .findVariableDeclarators('foo')
+    .renameTo('bar')
+    .toSource();
+
+  return { output }
 }

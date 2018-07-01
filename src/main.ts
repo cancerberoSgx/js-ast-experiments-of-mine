@@ -4,7 +4,7 @@ import { examples } from './examples';
 import { State } from './types';
 import layout from './ui/layout';
 import projectEditorContainer from './ui/projectEditorContainer';
-import { getInputCodeProjectFor, getInputProjectFor } from './util';
+import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 
 loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 

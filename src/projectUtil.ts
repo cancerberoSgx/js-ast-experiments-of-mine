@@ -1,5 +1,6 @@
 import { Example, JsAstExampleResult } from './types';
-import { AbstractProject } from 'monaco-typescript-project-util';
+import { AbstractProject, AbstractFile } from 'monaco-typescript-project-util';
+import { getFiles } from './examplesFileLoader';
 
 export function getInputProjectFor(e: Example): AbstractProject {
   return {
@@ -13,23 +14,10 @@ export function getInputProjectFor(e: Example): AbstractProject {
     ]
   }
 }
-
 export function getInputCodeProjectFor(e: Example): AbstractProject {
   return {
     name: e.name+'-input-code',
-    files: [
-      {
-        fileName: 'src/' + require('filenamify')(e.name) + '_input_code.js',
-        content: `
-function add(a, b) {
-  return a +
-    // Weird formatting, huh?
-    b;
-}
-        `,
-        isDirectory: false
-      }
-    ]
+    files: getFiles().filter(f=>f.fileName === e.inputCodeFileName)
   }
 }
 

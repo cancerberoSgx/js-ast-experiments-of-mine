@@ -1,4 +1,4 @@
-module.exports = function(config = {}){
+module.exports = function(config){
 
 // uses ast-types to transverse AST and modify it: adds an statement  
 // var superArgs = Array.prototype.slice.call(arguments, 2); as first child of 
@@ -9,17 +9,7 @@ var recast = require("recast");
 var n = types.namedTypes;
 var b = types.builders;
 
-var code = config.code || `
-const foo = 1
-function f(){foo++; f()}
-let i = [].map(function(a){return a++})
-
-function hoho(a, b, c, d, f, g) {
-  return a +// a comment in the middle
-    b;
-}
-`
-var ast = recast.parse(code);
+var ast = recast.parse(config.code);
 
 // Reuse the same AST structure for Array.prototype.slice.call.
 var sliceExpr = b.memberExpression(

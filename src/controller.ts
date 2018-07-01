@@ -1,25 +1,21 @@
 import { examples } from './examples';
 import { JsAstExampleResult, JsAstExampleExecute } from './types';
-import { getState, programCodeWorkspace, outputWorkspace } from './main';
+import { getState, programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from './main';
 import { getMonacoModelFor } from 'monaco-typescript-project-util';
-import { getOutputProjectFor, getInputProjectFor } from './util';
+import { getOutputProjectFor, getInputProjectFor, getInputCodeProjectFor } from './projectUtil';
 
 export function dispatchSelectExample(name: string) {
   const example = examples.find(e => e.name == name)
-  const project = getInputProjectFor(example)
-  programCodeWorkspace.projectUpdated(project)
+  programCodeWorkspace.projectUpdated(getInputProjectFor(example))
+  inputCodeWorkspace.projectUpdated(getInputCodeProjectFor(example))
 }
 
 // This execute dispatcher is a hack. at the bottom we override global AMD require and we must require the
 // libraries in this context so later, in the eval, when we switch requires it work!
 export function dispatchExecuteExample() : JsAstExampleResult{
   let evalResult: JsAstExampleResult
-
-
   const inputCodeFile = getState().inputCodeProject.files[0]
   const inputCodeModel = getMonacoModelFor(inputCodeFile)
-
-
   const file = getState().inputProject.files[0]
   const model = getMonacoModelFor(file)
   if (model && model.getValue && inputCodeModel && inputCodeModel.getValue) {

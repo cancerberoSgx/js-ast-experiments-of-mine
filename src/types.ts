@@ -12,6 +12,8 @@ export interface Example {
   execute: JsAstExampleExecute,
   description: string
   name: string
+  programFileName: string
+  inputCodeFileName: string
 }
 export interface State {
   inputProject?: AbstractProject

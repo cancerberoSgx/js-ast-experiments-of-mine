@@ -7,6 +7,7 @@
     "lib": ["es6", "dom"],
     "outDir": "./dist", 
     "rootDir": ".",
+    "checkJs": false,
     "strict": true, 
     "strictNullChecks": false,
     "noImplicitAny": true,
@@ -16,6 +17,10 @@
     "skipLibCheck": true
   }, 
   "include": [  
-    "src"
+    "src/**/*.ts", 
+    "src/**/*.tsx"
+  ], 
+  "exclude": [
+    "src/examples/**/*"
   ]
 }
