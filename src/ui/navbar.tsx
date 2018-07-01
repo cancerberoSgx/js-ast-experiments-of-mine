@@ -43,7 +43,7 @@ export default (state: State) =>
         </li> */}
 
         <li className="nav-item">
-          <a className="dropdown-item" data-toggle="modal" data-target="#whatsThisModal">About</a>
+          <a className="nav-link" data-toggle="modal" data-target="#whatsThisModal">About</a>
         </li>
 
       </ul>

@@ -2,9 +2,9 @@ import { AbstractProject, Editor, loadMonacoAmdFromExternalCdn, renderEditor, Wo
 import ReactDOM from 'react-dom';
 import { examples } from './examples';
 import { State } from './types';
-import layout, { verticalPaneChanged } from './ui/layout';
+import layout from './ui/layout';
 import projectEditorContainer from './ui/projectEditorContainer';
-import { getInputProjectFor, getInputCodeProjectFor } from './util';
+import { getInputCodeProjectFor, getInputProjectFor } from './util';
 
 loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
@@ -34,7 +34,7 @@ abstract class JsAstAbstractWorkspace extends Workspace {
     this.projectUpdated(project)
     return Promise.resolve()
   }
-  abstract render():void
+  abstract render(): void
   abstract projectUpdated(project: AbstractProject): void
 }
 
@@ -55,7 +55,12 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
   protected editor: Editor;
   render() {
     if (!this.editor) {
-      this.editor = renderEditor({ container: this.container, file: this.project.files[0], width: "800px", height: "400px" })
+      this.editor = renderEditor({
+        container: this.container,
+        file: this.project.files[0],
+        width: Math.trunc((document.body.clientWidth) / 2) + 'px',
+        height: Math.trunc((window.innerHeight) / 2) + 'px'
+      })
     }
     else {
       this.editor.monacoEditor.setValue(this.project.files[0].content)
@@ -97,16 +102,16 @@ export function getState(): State {
 // a skeleton layout that will define the containers for our two workspaces. 
 ReactDOM.render(layout(state), document.getElementById('mainApplicationContainer'))
 
-export const inputWorkspace = new InputProjectWorkspace(document.getElementById('inputWorkspaceContainer'))
+export const programCodeWorkspace = new InputProjectWorkspace(document.getElementById('inputWorkspaceContainer'))
 
 export const outputWorkspace = new OutputProjectWorkspace(document.getElementById('outputWorkspaceContainer'))
 
 export const inputCodeWorkspace = new InputCodeProjectWorkspace(document.getElementById('inputCodeWorkspaceContainer'))
 
 // we start the input workspace only, when is ready we render it with the input file
-inputWorkspace.setup()
-  .then(() => inputWorkspace.start(getInputProjectFor(getState().selectedExample)))
-  .then(()=>verticalPaneChanged(Math.trunc((document.body.clientHeight+57)/2)))
-
-inputCodeWorkspace.setup()
-  .then(() => inputCodeWorkspace.start(getInputCodeProjectFor(getState().selectedExample)))
+programCodeWorkspace.setup()
+  .then(() => programCodeWorkspace.start(getInputProjectFor(getState().selectedExample)))
+  .then(() => {
+    inputCodeWorkspace.setup()
+      .then(() => inputCodeWorkspace.start(getInputCodeProjectFor(getState().selectedExample)))
+  })

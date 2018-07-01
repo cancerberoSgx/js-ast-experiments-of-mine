@@ -1,13 +1,13 @@
 import { examples } from './examples';
 import { JsAstExampleResult, JsAstExampleExecute } from './types';
-import { getState, inputWorkspace, outputWorkspace } from './main';
+import { getState, programCodeWorkspace, outputWorkspace } from './main';
 import { getMonacoModelFor } from 'monaco-typescript-project-util';
 import { getOutputProjectFor, getInputProjectFor } from './util';
 
 export function dispatchSelectExample(name: string) {
   const example = examples.find(e => e.name == name)
   const project = getInputProjectFor(example)
-  inputWorkspace.projectUpdated(project)
+  programCodeWorkspace.projectUpdated(project)
 }
 
 // This execute dispatcher is a hack. at the bottom we override global AMD require and we must require the
