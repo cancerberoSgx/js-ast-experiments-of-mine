@@ -1,100 +1,83 @@
-import { loadMonacoAmdFromExternalCdn, Workspace, ProjectNature, AbstractProject, AbstractFile, getMonacoModelFor, renderEditor, Editor } from 'monaco-typescript-project-util';
+import { AbstractProject, Editor, loadMonacoAmdFromExternalCdn, renderEditor, Workspace } from 'monaco-typescript-project-util';
 import ReactDOM from 'react-dom';
 import { examples } from './examples';
 import { State } from './types';
-import layout from './ui/layout';
-import { getInputProjectFor } from './util';
+import layout, { verticalPaneChanged } from './ui/layout';
 import projectEditorContainer from './ui/projectEditorContainer';
+import { getInputProjectFor, getInputCodeProjectFor } from './util';
 
 loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
-// import * as monaco from 'monaco-editor'
 abstract class JsAstAbstractWorkspace extends Workspace {
   project: AbstractProject;
   constructor(protected container: HTMLElement) {
     super()
   }
-  public selectedFileChanged(fileName: string): void {
+  selectedFileChanged(fileName: string): void {
     // we will ignore this for now - not important to support navigation between files right now
     // this.selectedFile = this.project.files.find(file => file.fileName === fileName) || this.getSelectedFile()
     // this.render()
   }
+  setEditorWidth(w: number): any {
+    const editor = this.container.querySelector<HTMLDivElement>('.editor')
+    if (editor) {
+      editor.style.width = `${w}px`
+    }
+  }
+  setEditorHeight(h: number): any {
+    const editor = this.container.querySelector<HTMLDivElement>('.editor')
+    if (editor) {
+      editor.style.height = `${h}px`
+    }
+  }
+  start(project: AbstractProject): Promise<any> {
+    this.projectUpdated(project)
+    return Promise.resolve()
+  }
+  abstract render():void
+  abstract projectUpdated(project: AbstractProject): void
 }
+
 export class InputProjectWorkspace extends JsAstAbstractWorkspace {
   render() {
-    ReactDOM.render(projectEditorContainer( getState(), this.project, this.project.files[0]), this.container)
+    ReactDOM.render(projectEditorContainer(getState(), this.project, this.project.files[0]), this.container)
   }
-  updateProject(project: AbstractProject){
+  projectUpdated(project: AbstractProject) {
     this.project = project
     state = Object.assign({}, state, {
       inputProject: this.project
     })
     this.render()
   }
-  start(): Promise<any> {
-    return new Promise(resolve=>{
-      this.updateProject(getInputProjectFor(getState().selectedExample))
-      resolve()
-      // this.projectChanged(this.project)
-      // .then(()=>{
-        // debugger
-        // resolve()
-      // })
-      // .catch(()=>{
-      //   debugger
-      //   resolve()
-      // })
-    })
-    // return Promise.resolve()
-    //   .then(() => {
-        
-    //     return Promise.resolve() // This will load the project typescript - monaco auxiliary langauges / libraries, etc
-    //   })
-    //   .then(() => this.projectChanged(this.project))
-    //   .catch(ex=>{  // TODO: framework should not throw if i configure it
-    //     return Promise.resolve(this.projectNature)
-    //   })  
-  }
-
-  // getExecutableFile(): AbstractFile { // this should be responsibility of the model - to know which of its files is the executable one... this is a temporary solution
-  //   return this.project.files[0]
-  // }
 }
 
 export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
-  private editor: Editor;
+  protected editor: Editor;
   render() {
-    if(!this.editor){
-      this.editor = renderEditor({container: this.container, file: this.project.files[0], width:"100%", height:"800px"})
+    if (!this.editor) {
+      this.editor = renderEditor({ container: this.container, file: this.project.files[0], width: "800px", height: "400px" })
     }
     else {
       this.editor.monacoEditor.setValue(this.project.files[0].content)
     }
   }
-  private updateProject(project: AbstractProject): void {
+  projectUpdated(project: AbstractProject) {
     this.project = project
     state = Object.assign({}, state, {
       outputProject: this.project
     })
     this.render()
   }
-  private started: boolean=false
-  start(project: AbstractProject): Promise<any> {
-    return new Promise(resolve=>{
-      this.updateProject(project)
-    })
-  }
-  projectUpdated(project: AbstractProject){
-    if(!this.started){
-      this.start(project)
-    }else{
-      // const model = getMonacoModelFor(project.files[0])
-      // model.setValue(project.files[0].content)
-      // this.editor.monacoEditor
-      this.updateProject(project)
-    }
-  }
+}
 
+export class InputCodeProjectWorkspace extends OutputProjectWorkspace {
+  projectUpdated(project: AbstractProject) {
+    this.project = project
+    state = Object.assign({}, state, {
+      inputCodeProject: this.project
+    })
+    this.render()
+  }
 }
 
 
@@ -109,25 +92,21 @@ export function getState(): State {
   }
   return state
 }
+
 // we render the main application skeleton now since it doesn't depend on monaco, or anything, is just 
 // a skeleton layout that will define the containers for our two workspaces. 
 ReactDOM.render(layout(state), document.getElementById('mainApplicationContainer'))
-
 
 export const inputWorkspace = new InputProjectWorkspace(document.getElementById('inputWorkspaceContainer'))
 
 export const outputWorkspace = new OutputProjectWorkspace(document.getElementById('outputWorkspaceContainer'))
 
+export const inputCodeWorkspace = new InputCodeProjectWorkspace(document.getElementById('inputCodeWorkspaceContainer'))
+
 // we start the input workspace only, when is ready we render it with the input file
 inputWorkspace.setup()
-  .then(() => inputWorkspace.start())
-  // .then(()=>{
-  // // debugger
-  // })
-  .catch(ex=>{// the framework should not throw if there is no package json - or perhaps we ca configure it as so.
-    debugger 
-  })
+  .then(() => inputWorkspace.start(getInputProjectFor(getState().selectedExample)))
+  .then(()=>verticalPaneChanged(Math.trunc((document.body.clientHeight+57)/2)))
 
-
-// outputWorkspace.setup().then(() => outputWorkspace.start())
-
+inputCodeWorkspace.setup()
+  .then(() => inputCodeWorkspace.start(getInputCodeProjectFor(getState().selectedExample)))

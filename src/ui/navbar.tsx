@@ -15,33 +15,36 @@ export default (state: State) =>
         {/* <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown06">
-            <a className={"dropdown-item"} href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">Save Project</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">Load Project</a>
+            <a className="dropdown-item" href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">Save Project</a>
+            <a className="dropdown-item" href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">Load Project</a>
           </div>
         </li> */}
-        <li className={"nav-item dropdown"}>
-          <a className={"nav-link executeLink"} href="#" id="dropdown02"   onClick={()=>dispatchExecuteExample()}>Execute!</a>
+        <li className="nav-item">
+          <a className={"nav-link executeLink"} href="#" id="dropdown02" onClick={() => dispatchExecuteExample()}>Execute!</a>
           {/* <div className={"dropdown-menu"} aria-labelledby="dropdown06"> */}
-            {/* <a className={"dropdown-item"}  onClick={()=>getActionManager().installTypes(state.project)}>Install @types</a> */}
-            {/* <a className={"dropdown-item"} onClick={()=>{getEmitOutput(state)}}>Emit Output</a> */}
+          {/* <a className="dropdown-item"  onClick={()=>getActionManager().installTypes(state.project)}>Install @types</a> */}
+          {/* <a className="dropdown-item" onClick={()=>{getEmitOutput(state)}}>Emit Output</a> */}
           {/* </div> */}
         </li>
 
         <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown08">
-            {examples.map(ex => <a className={"dropdown-item"} key={ex.name} onClick={()=>dispatchSelectExample(ex.name)}>{ex.name}</a>)}
+            {examples.map(ex => <a className="dropdown-item" key={ex.name} onClick={() => dispatchSelectExample(ex.name)}>{ex.name}</a>)}
           </div>
         </li>
 
-        <li className={"nav-item dropdown"}>
+        {/* <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown09">
-            <a className={"dropdown-item"} data-toggle="modal" data-target="#whatsThisModal">What's this?</a>
-            <a className={"dropdown-item"} href="https://github.com/cancerberoSgx/js-ast-experiments-of-mine">Project home</a>
+            <a className="dropdown-item" data-toggle="modal" data-target="#whatsThisModal">What's this?</a>
+            <a className="dropdown-item" href="https://github.com/cancerberoSgx/js-ast-experiments-of-mine">Project home</a>
           </div>
-        </li>
+        </li> */}
 
+        <li className="nav-item">
+          <a className="dropdown-item" data-toggle="modal" data-target="#whatsThisModal">About</a>
+        </li>
 
       </ul>
     </div>

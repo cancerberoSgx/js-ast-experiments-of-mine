@@ -13,8 +13,13 @@ export default (state: State)=>
         </button>
       </div>
       <div className={"modal-body"}>
-        <p>This is my try to build a TypeScript project editor using Monaco <a href="">TypeScript compiler</a> in the browser</p>
+      
+        <p>This is a playground to test (and learn) JavaScript technologies related JavaScript / TypeScript code parsing, AST, transversing, transformations, parsing, code generation, etc. Right now it support libraries like recast, jscodeshift, ast-types, esprima, acorn, astring, etc.</p>
+        
+        <p>At the left you have editors for the core being executed (program) and the input code that will be processed by it. At the right the output returned by the program. At the top there's a menu that allows you to select one of the available examples and execute it.  </p>
+
         <p><a href="https://github.com/cancerberoSgx/js-ast-experiments-of-mine">Project home page</a>. </p>
+
       </div>
       <div className={"modal-footer"}>
         <button type="button" className={"btn btn-secondary"} data-dismiss="modal">Close</button>

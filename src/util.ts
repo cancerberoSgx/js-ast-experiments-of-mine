@@ -14,6 +14,24 @@ export function getInputProjectFor(e: Example): AbstractProject {
   }
 }
 
+export function getInputCodeProjectFor(e: Example): AbstractProject {
+  return {
+    name: e.name+'-input-code',
+    files: [
+      {
+        fileName: 'src/' + require('filenamify')(e.name) + '_input_code.js',
+        content: `
+function add(a, b) {
+  return a +
+    // Weird formatting, huh?
+    b;
+}
+        `,
+        isDirectory: false
+      }
+    ]
+  }
+}
 
 export function getOutputProjectFor(result: JsAstExampleResult): AbstractProject {
   return {

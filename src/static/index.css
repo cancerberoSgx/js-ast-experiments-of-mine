@@ -1,5 +1,5 @@
 .editor{
-  resize: vertical;
+  resize: both;
   overflow: auto;
 }
 
@@ -8,12 +8,12 @@
   color: white;
 }
 
-#tsProjectFolderDropArea {
+/* #tsProjectFolderDropArea {
   width: 300px; 
   height: 150px; 
   border: 3px solid pink; 
   background-color: darkolivegreen
-}
+} */
 
 #saveProjectJsonTextarea{
   width: 100%
@@ -22,22 +22,86 @@
 #candombed-main .container-fluid{
   padding: 0
 }
-
+.navbar-nav{
+  height: 56px;
+}
 /* navbar in mobile menu inline and dropdown floating so editor is not pushed to the bottom when user actionate the menu */
 @media (max-width: 768px) {
-    .navbar-nav,  .navbar-nav .nav-link, .navbar-nav .nav-item,  .navbar-nav .dropdown {
-      display: inline;
-    }
-    .navbar-collapse {
-      flex-basis: auto;
-    }
-    .navbar-nav .nav-link{
-      padding-right: .5rem;
-      padding-left: .5rem;
-    }
-    .navbar-nav .dropdown-menu{
-      position: absolute; 
-      float: left
-    }
- }  
+  .navbar-nav,  .navbar-nav .nav-link, .navbar-nav .nav-item,  .navbar-nav .dropdown {
+    display: inline;
+  }
+  .navbar-collapse {
+    flex-basis: auto;
+  }
+  .navbar-nav .nav-link{
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+  .navbar-nav .dropdown-menu{
+    position: absolute; 
+    float: left;
+  }
+}  
+
+
+.SplitPane.primary{
+  margin-top: 56px;
+}
+
+.rstcustom__rowWrapper{
+  cursor: pointer;
+  }
+  .rstcustom__node .selected {
+    background-color: #b3959555
+  }
+  
+  .Resizer {
+    background: #000;
+    opacity: .2;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+  }
+  
+  .Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+  }
+  
+  .Resizer.horizontal {
+    height: 11px;
+    margin: -5px 0;
+    border-top: 5px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 5px solid rgba(255, 255, 255, 0.2);
+    cursor: row-resize;
+    width: 100%;  
+  }
+  
+  .Resizer.horizontal:hover {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .Resizer.vertical {
+    width: 11px;
+    margin: 0 -5px;
+    border-left: 5px solid rgba(255, 255, 255, 0.678);
+    border-right: 5px solid rgba(255, 255, 255, 0.678);
+    cursor: col-resize;
+  }
+  
+  .Resizer.vertical:hover {
+    border-left: 5px solid rgba(0, 0, 0, 0.5);
+    border-right: 5px solid rgba(0, 0, 0, 0.5);
+  }
+  .Resizer.disabled {
+  cursor: not-allowed;
+  }
+  .Resizer.disabled:hover {
+  border-color: transparent;
+  }
 

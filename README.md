@@ -19,3 +19,7 @@ npm run dev
 
 `npm run build-production2` : uses bankai that does very good job but I don't know how to put my html there yet... TODO - for it to work we have to add the browserify property on package.json which is a bad idea. 
 
+
+# TODO
+
+ * separate libraries in a diferent bundle so development is fast

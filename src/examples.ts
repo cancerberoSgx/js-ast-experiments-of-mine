@@ -1,6 +1,9 @@
-import { AbstractProject, AbstractFile } from 'monaco-typescript-project-util';
+import { getFiles } from './examplesFileLoader';
 import { Example } from './types';
 
+export function getExamples(){
+  return examples
+}
 export const examples: Example[] = [
   {
     name: 'recast JavaScript simple 1',
@@ -27,5 +30,4 @@ export const examples: Example[] = [
 ]
 
 
-import {getFiles} from './testPack'
 console.log(getFiles());

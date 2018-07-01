@@ -16,6 +16,7 @@ export interface Example {
 export interface State {
   inputProject?: AbstractProject
   outputProject?: AbstractProject
+  inputCodeProject?: AbstractProject
   selectedExample?: Example
   examples: Example[]
 }

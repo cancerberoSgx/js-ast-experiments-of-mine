@@ -1,3 +1,5 @@
+// this file only takes care of loading the embedded examples files using br-fs-to-json. Please modify it only
+// if you know what you are doing
 
 import { fs2json } from 'fs-to-json'
 
@@ -21,5 +23,5 @@ fs2json({
 })
 
 export function getFiles(): ExampleFile[] {
-  return examples
+  return examples // heads up - fs2json promise resolves sync so examples will be defined here
 }
