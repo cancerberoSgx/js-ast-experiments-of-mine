@@ -22,9 +22,9 @@
 #candombed-main .container-fluid{
   padding: 0
 }
-.navbar-nav{
+/* .navbar-nav{
   height: 56px;
-}
+} */
 /* navbar in mobile menu inline and dropdown floating so editor is not pushed to the bottom when user actionate the menu */
 @media (max-width: 768px) {
   .navbar-nav,  .navbar-nav .nav-link, .navbar-nav .nav-item,  .navbar-nav .dropdown {

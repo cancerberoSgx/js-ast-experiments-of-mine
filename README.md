@@ -23,3 +23,6 @@ npm run dev
 # TODO
 
  * separate libraries in a diferent bundle so development is fast
+ * run https://github.com/cpojer/js-codemod/, https://github.com/jhgg/js-transforms, etc
+ * be able to edit programs using ts
+ * start writing typings for recast, jscodeshift, etc

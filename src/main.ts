@@ -6,7 +6,6 @@ import layout from './ui/layout';
 import projectEditorContainer from './ui/projectEditorContainer';
 import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 
-loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
 abstract class JsAstAbstractWorkspace extends Workspace {
   project: AbstractProject;
@@ -63,7 +62,9 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
     else {
       const file = this.project.files[0]
       const model = getMonacoModelFor(file)
+      model.setValue(file.content)
       this.editor.monacoEditor.setModel(model)
+      console.log('on render: ', file.fileName, model.uri.fsPath, file.content, model.getValue())
     }
   }
   projectUpdated(project: AbstractProject) {
@@ -97,6 +98,10 @@ export function getState(): State {
   }
   return state
 }
+
+// start
+
+loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
 // we render the main application skeleton now since it doesn't depend on monaco, or anything, is just 
 // a skeleton layout that will define the containers for our two workspaces. 

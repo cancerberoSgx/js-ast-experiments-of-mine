@@ -36,6 +36,13 @@ export const examples: Example[] = [
     description: `Uses ast-types to transverse AST and modify it: adds an statement  \`var superArgs = Array.prototype.slice.call(arguments, 2);\` as first child of each function declaration body`
   },
 
+  {
+    name: '(TS) codeshift transform TypeScript',
+    programFileName: 'jscodeshift_transformTs.js',
+    inputCodeFileName: 'jscodeshift_transformTs_inputCode.ts',
+    execute: require('./examples/jscodeshift_transformTs'),
+    description: `Uses jscodeshift to transform TypeScript code renaming variable declarations named 'foo' to bar`
+  },
 ]
 
 
