@@ -3,6 +3,10 @@
   overflow: auto;
 }
 
+.executeLink {
+  font-weight: bolder;
+  color: white;
+}
 
 #tsProjectFolderDropArea {
   width: 300px; 

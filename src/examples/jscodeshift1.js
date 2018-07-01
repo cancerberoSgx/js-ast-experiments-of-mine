@@ -14,5 +14,4 @@ const output = jscodeshift(code)
   .toSource();
 
   return {output}
-// console.log(output);
 }

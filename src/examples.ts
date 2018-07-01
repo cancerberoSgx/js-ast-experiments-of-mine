@@ -27,3 +27,5 @@ export const examples: Example[] = [
 ]
 
 
+import {getFiles} from './testPack'
+console.log(getFiles());

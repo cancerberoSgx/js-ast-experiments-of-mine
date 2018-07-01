@@ -21,17 +21,19 @@ abstract class JsAstAbstractWorkspace extends Workspace {
   }
 }
 export class InputProjectWorkspace extends JsAstAbstractWorkspace {
-
   render() {
     ReactDOM.render(projectEditorContainer( getState(), this.project, this.project.files[0]), this.container)
   }
+  updateProject(project: AbstractProject){
+    this.project = project
+    state = Object.assign({}, state, {
+      inputProject: this.project
+    })
+    this.render()
+  }
   start(): Promise<any> {
     return new Promise(resolve=>{
-      this.project = getInputProjectFor(getState().selectedExample)
-      state = Object.assign({}, state, {
-        inputProject: this.project
-      })
-      this.render()
+      this.updateProject(getInputProjectFor(getState().selectedExample))
       resolve()
       // this.projectChanged(this.project)
       // .then(()=>{

@@ -1,13 +1,15 @@
 import { examples } from './examples';
-import { JsAstExampleResult } from './types';
+import { JsAstExampleResult, JsAstExampleExecute } from './types';
 import { getState, inputWorkspace, outputWorkspace } from './main';
 import { getMonacoModelFor } from 'monaco-typescript-project-util';
-import { getOutputProjectFor } from './util';
+import { getOutputProjectFor, getInputProjectFor } from './util';
 
 
 export function dispatchSelectExample(name: string) {
   const example = examples.find(e => e.name == name)
-  const result = example.execute({ code: '' })
+  const project = getInputProjectFor(example)
+  inputWorkspace.updateProject(project)
+  // const result = example.execute({ code: '' })
   debugger
 }
 
@@ -30,10 +32,28 @@ export function dispatchExecuteExample() : JsAstExampleResult{
   } else {
     evalResult = { error: new Error('Cannot obtain value from input editor') }
   }
-
   outputWorkspace.projectUpdated(getOutputProjectFor(evalResult))
   return 
 }
+
+
+export function getModuleExports (code: string): JsAstExampleExecute|{error: Error} {
+  return eval(`
+(function() {
+  try {
+    const module = { exports: { error: new Error('Failed to obtain function from evaluator')} };
+    var result__ = (function(module, require) {
+      ${code} ;
+    })(module, window.requireCommons_);
+    return module.exports;
+  }
+  catch(ex) {
+    return { error: ex }
+  }
+})()
+`)
+}
+
 
 // hack - we store the commons js require() in a global here because is replaced with AMD require by monaco-editor
 const recast = require('recast');
