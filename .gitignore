@@ -3,3 +3,4 @@ node_modules/
 /static
 src/dist
 /docs2
+*eslint-rules-*

@@ -125,3 +125,7 @@ programCodeWorkspace.setup()
       .then(() => inputCodeWorkspace.projectUpdated(getInputCodeProjectFor(getState().selectedExample)))
       .then(() => setTimeout(() => verticalPaneChanged(0), 200))
   }) 
+
+import eslint from './util/eslint'
+
+console.log('slint.Linter', eslint.Linter)

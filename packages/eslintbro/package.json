@@ -1,0 +1,16 @@
+{
+  "name": "eslintbro",
+  "version": "0.0.1",
+  "description": "hack to eslint to expose internal apis needed by eslint's rules to run in the browser. We want to edit and run eslint rules in the browser and they depend on eslint internal APIs so we want to expose them. Just for fun, dont worry.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["eslint"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
