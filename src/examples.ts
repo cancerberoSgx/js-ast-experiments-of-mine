@@ -60,6 +60,13 @@ export const examples: Example[] = [
     inputCodeFileName: 'ast-types1_inputCode.js',
     description: `Uses ast-types to transverse AST and modify it: adds an statement  \`var superArgs = Array.prototype.slice.call(arguments, 2);\` as first child of each function declaration body`
   },
+  {
+    name: 'eslint/semi-custom-445.js',
+    programFileName: 'eslint/semi-custom-445.js',
+    inputCodeFileName: 'eslint/semi-custom-445.js',
+    description: `first attempt to eval a eslint rule (semi)`
+  },  
+ 
 ]
 
 function buildJsCodeMode(programFileName:string): Example{

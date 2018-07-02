@@ -7,7 +7,7 @@
     "browserify": "cp src/util/eslintFacade.js dist/src/util/ && browserify dist/src/main.js -t br-fs-to-json  -t [ babelify --presets [ react ] ] -o static/src.js",
     "build": "npm run tsc && npm run browserify",
     "copy-static": "mkdir -p static && cp -r src/static/* static",
-    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js auxiliary-packages/eslint-rules-in-browser/bundle/eslint.js static && npm run copy-examples ",
+    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js packages/eslintbro/bundle/eslint.js static && npm run copy-examples ",
     "copy-examples": "mkdir -p dist/src/examples && cp -r src/examples/* dist/src/examples",
     "watch-tsc": "watch -p \"src/**/*\" -c \"npm run copy-examples && npm run tsc \"",
     "watch-static": "watch -p \"src/static/**/*\" -c \"npm run copy-static\"",
@@ -47,6 +47,7 @@
   "dependencies": {
     "ast-types": "^0.11.5",
     "bootstrap": "^4.1.1",
+    "eslintbro": "file:packages/eslintbro",
     "esprima": "^4.0.0",
     "filenamify": "^2.1.0",
     "fs-to-json": "^0.1.7",
@@ -61,7 +62,6 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.0.0-beta.51",
-    "@types/eslint": "^4.16.3",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
     "babel-preset-react": "^6.24.1",
@@ -71,6 +71,7 @@
     "browser-sync": "^2.24.4",
     "browserify": "^16.2.2",
     "concurrently": "^3.6.0",
+    "eslint": "^5.0.1",
     "google-closure-compiler": "^20180610.0.2",
     "ts-node": "^7.0.0",
     "watch-cli": "^0.2.3"

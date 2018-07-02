@@ -12,6 +12,10 @@
     max-width:100%!important;
   }
 }
+#inputCodeWorkspaceContainer, #outputWorkspaceContainer{
+  padding-top: 8px
+}
+
 #diffEditorContainer {
   padding: 0px 10px 10px 0px
 }

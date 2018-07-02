@@ -126,6 +126,13 @@ programCodeWorkspace.setup()
       .then(() => setTimeout(() => verticalPaneChanged(0), 200))
   }) 
 
-import eslint from './util/eslint'
 
-console.log('slint.Linter', eslint.Linter)
+// import * as eslint from 'eslintbro'
+
+
+// console.log('slint.Linter', eslint.newLinter(), eslint.require('./ast-utils'))
+
+// const linter = eslint.newLinter()
+
+
+// const a = eslint.require('')

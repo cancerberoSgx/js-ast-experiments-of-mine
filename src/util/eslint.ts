@@ -1,8 +1,3 @@
-import { Linter } from 'eslint'
+// import { Linter } from 'eslint'
+// import * as eslint from 'eslintbro'
 
-export interface EslintFacade {
-  require(s: string): any
-  Linter: typeof Linter
-}
-
-export default require('./eslintFacade') as EslintFacade
