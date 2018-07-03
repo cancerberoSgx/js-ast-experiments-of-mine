@@ -4,7 +4,7 @@ import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 import layout from './ui/layout';
 import { verticalPaneChanged } from './uiUtil';
 import { createWorkspaces, getState, inputCodeWorkspace, programCodeWorkspace } from './workspace';
-import { dispatchExecuteExample } from './controller';
+import { dispatchExecuteExample, dispatchInitialStateFromHash } from './controller';
 
 
 export function renderLayout() {
@@ -19,6 +19,7 @@ function startApplication() {
   loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.13.1/min/')
 
   renderLayout()
+  dispatchInitialStateFromHash()
   createWorkspaces()
  
   // we start the input workspace only, when is ready we render it with the input file

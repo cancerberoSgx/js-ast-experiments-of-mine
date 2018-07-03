@@ -52,7 +52,10 @@
     float: left;
   }
 }  
-
+ 
+.dropdown-item.show{
+  background-color: #adeded
+ }
 
 .SplitPane.primary{
   margin-top: 56px;

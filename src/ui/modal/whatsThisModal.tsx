@@ -18,7 +18,15 @@ export default (state: State)=>
         
         <p>At the left you have editors for the core being executed (program) and the input code that will be processed by it. At the right the output returned by the program. At the top there's a menu that allows you to select one of the available examples and execute it.  </p>
 
+        <p>Examples are associated with tags to identify on which technology they are implemented, which Programming language they attack, its difficulty level, etc. </p>
+
+        <p>The app support two kind of shareable links: </p>
+        <ul>
+          <li><a href="https://cancerberosgx.github.io/js-ast-experiments-of-mine/#js-codemod%2Ftemplate-literals.js">pointing to an specific example</a></li>
+          <li><a href="https://cancerberosgx.github.io/js-ast-experiments-of-mine/#showTaggedExamples=technology/eslint">pointing to tag subcategory - in this case will list all examples associated with the "eslint" technology</a></li>
+        </ul> 
         <p><a href="https://github.com/cancerberoSgx/js-ast-experiments-of-mine">Project home page</a>. </p>
+
 
       </div>
       <div className={"modal-footer"}>

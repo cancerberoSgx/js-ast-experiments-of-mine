@@ -4,26 +4,28 @@ export function getExamples() {
   return examples
 }
 export const examples: Example[] = [
-{name: 'eslint object-shorthand typescript', description: 'eslint object-shorthand rule implementation, configured to use the typescript-eslint-parser and provided TypeScript input code', programFileName: 'eslint/object-shorthand.js',
-inputCodeFileName: 'eslint/object-shorthand_inputCode.ts',
-tags: [
   {
-    tag: 'difficulty',
-    values: ['hard'],
+    name: 'eslint object-shorthand typescript', description: 'eslint object-shorthand rule implementation, configured to use the typescript-eslint-parser and provided TypeScript input code', programFileName: 'eslint/object-shorthand.js',
+    inputCodeFileName: 'eslint/object-shorthand_inputCode.ts',
+    tags: [
+      {
+        tag: 'difficulty',
+        values: ['hard'],
+      },
+      {
+        tag: 'technology',
+        values: ['eslint']
+      },
+      {
+        tag: 'language',
+        values: ['TypeScript']
+      }
+    ],
   },
-  {
-    tag: 'technology',
-    values: ['eslint']
-  },
-  {
-    tag: 'language',
-    values: ['TypeScript']
-  }
-],}, 
 
 
   buildEslint('eslint/prefer-arrow-callback.js'),
-  
+
   buildJsCodeMode('js-codemod/arrow-function.js'),
   buildJsCodeMode('js-codemod/template-literals.js'),
 
@@ -107,7 +109,7 @@ tags: [
     programFileName: 'recast_parsingTs.js',
     inputCodeFileName: 'recast_parsingTs_inputCode.ts',
     outputCodeFileName: 'src/recast_parsingTs_outputCode.ts',
-    description: "Parse TypeScript using recast. prints back the code and prints Ts AST in the console",
+    description: "Parse TypeScript using recast. \nThen uses ast-types to rename a class and then. \nFinally prints back the code and prints Ts AST in the console",
     tags: [
       {
         tag: 'difficulty',
@@ -162,7 +164,7 @@ tags: [
         values: ['JavaScript']
       }
     ],
-  }, 
+  },
   buildEslint('eslint/rule.js'),
   buildEslint('eslint/arrow-body-style.js'),
 
@@ -170,8 +172,8 @@ tags: [
 ]
 
 
-function buildEslint(programFileName:string, name: string = programFileName, description :string=programFileName): Example{
-return {
+function buildEslint(programFileName: string, name: string = programFileName, description: string = programFileName): Example {
+  return {
     name: name,
     programFileName: programFileName,
     inputCodeFileName: programFileName.replace('.js', '_inputCode.js'),
@@ -219,10 +221,10 @@ function buildJsCodeMode(programFileName: string): Example {
 }
 
 
-export type ExampleTagName = 'difficulty'|'technology'|'language'
-export const exampleTagNames : ExampleTagName[]= ['technology', 'difficulty', 'language']
+export type ExampleTagName = 'difficulty' | 'technology' | 'language'
+export const exampleTagNames: ExampleTagName[] = ['technology', 'difficulty', 'language']
 export const exampleTagValues = {
   'difficulty': ['easy', 'medium', 'hard'],
-  'language': ['JavaScript', 'TypeScript'], 
+  'language': ['JavaScript', 'TypeScript'],
   'technology': ['recast', 'code-mode', 'jscodeshift', 'ast-types', 'eslint', 'js-transforms']
 }
