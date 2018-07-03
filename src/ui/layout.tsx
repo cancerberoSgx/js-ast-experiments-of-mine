@@ -20,18 +20,23 @@ export default (state: State) =>
       className="primary"
       resizerStyle={{ background: '#000' }}
     >
-    
-      <div id="inputWorkspaceContainer"></div>
-
+      <div>
+        <div className="workspace-label">program code</div>
+        <div id="inputWorkspaceContainer"></div>
+      </div>
       <SplitPane split="vertical"
         defaultSize={'50%'}
         onChange={verticalPaneChanged}
         resizerStyle={{ background: '#000' }}
-      >
-
-        <div id="inputCodeWorkspaceContainer"></div>
-
-        <div id="outputWorkspaceContainer"></div>
+      > 
+        <div>
+          <div className="workspace-label">input code</div>
+          <div id="inputCodeWorkspaceContainer"></div>
+        </div>
+        <div>
+          <div className="workspace-label">output code</div>
+          <div id="outputWorkspaceContainer"></div>
+        </div>
 
       </SplitPane>
     </SplitPane>
@@ -39,6 +44,6 @@ export default (state: State) =>
     {forkRibbon()}
     {whatsThisModal(state)}
     {diffModal(state)}
-    {selectedExampleDescriptionModal()} 
+    {selectedExampleDescriptionModal()}
   </div>
 
