@@ -21,15 +21,16 @@ export function executeProgram(programCode: string, inputCode: string): JsAstExa
   let evalResult: JsAstExampleResult
   try {
     const exec = getModuleExports(programCode)
-    if((exec as any).error){
+    if ((exec as any).error) {
       throw new Error((exec as any).error)
     }
-    evalResult = (exec as JsAstExampleExecute)({code: inputCode})
+    evalResult = (exec as JsAstExampleExecute)({ code: inputCode })
   } catch (error) {
     evalResult = { error }
   }
   return evalResult
 }
+
 
 // hack - we store the commons js require() in a global here because is replaced with AMD require by monaco-editor
 ; (window as any).requireCommons_ = require
@@ -37,8 +38,8 @@ export function executeProgram(programCode: string, inputCode: string): JsAstExa
 // hack - because of the last hack we need to include all the libraries in this context so they are 
 // available in this require()'s closure (browserify)
 const recast = require('recast')
-var types = require("ast-types")
-const eslint = require('eslintbro')
-var jscodeshift = require('jscodeshift') 
-var esprima = require('esprima')
+const types = require("ast-types")
+const jscodeshift = require('jscodeshift')
+const esprima = require('esprima')
 const parser = require('recast/parsers/typescript')
+const eslint = require('eslintbro')

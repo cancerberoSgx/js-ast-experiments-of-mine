@@ -1,6 +1,6 @@
 import React from 'react';
+import { dispatchExecuteExample, dispatchSelectExample } from '../controller';
 import { examples } from '../examples';
-import { dispatchSelectExample, dispatchExecuteExample } from '../controller';
 import { State } from '../types';
 import { showDiffModalHandler } from './diffModal';
 
@@ -40,7 +40,7 @@ export default (state: State) =>
         <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown02">
-            <a className={"dropdown-item"} href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">search examples </a>
+            <a className={"dropdown-item"} href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">search examples</a>
             <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">by name</a>
             <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or tag</a>
             <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or language, etc</a>

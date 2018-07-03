@@ -29,34 +29,43 @@ export default (state: State) =>
  
 import * as monaco from 'monaco-editor'
 declare const $: any
+// let handlerCalled: boolean = false
+let $modal: any
 export function showDiffModalHandler() {
 
-  $('#diffEditorModal').modal({})
+  if($modal){
+    $modal.modal('show')
+  } else {
 
-  $('#diffEditorModal').on('hide.bs.modal', () => {
-    if (diffEditor) {
-      diffEditor.dispose()
-    }
-  }) 
+    $modal = $('#diffEditorModal')
+    $modal.modal({})
 
-  let diffEditor: monaco.editor.IStandaloneDiffEditor
-  $('#diffEditorModal').on('shown.bs.modal', () => {
-    const editorContainer = document.querySelector<HTMLElement>('#diffEditorContainer')
-    Object.assign(editorContainer.style, {
-      width: Math.trunc(window.innerWidth * 0.95) + 'px',
-      height: Math.trunc(window.innerHeight * 0.80) + 'px'
+    let diffEditor: monaco.editor.IStandaloneDiffEditor
+    $modal.on('hide.bs.modal', () => {
+      if (diffEditor) {
+        diffEditor.dispose()
+        diffEditor = null
+      }
     })
-    var originalModel = inputCodeWorkspace.getCurrentFileModel()
-    var modifiedModel = outputWorkspace.getCurrentFileModel()
-    diffEditor = getMonaco().editor.createDiffEditor(editorContainer, {
-      automaticLayout: true
-    });
-    diffEditor.setModel({
-      original: originalModel,
-      modified: modifiedModel
-    });
-
-  })
-
-
+    
+    $modal.on('shown.bs.modal', () => {
+      if(diffEditor){
+        return 
+      } 
+      const editorContainer = document.querySelector<HTMLElement>('#diffEditorContainer')
+      Object.assign(editorContainer.style, {
+        width: Math.trunc(window.innerWidth * 0.95) + 'px',
+        height: Math.trunc(window.innerHeight * 0.80) + 'px'
+      })
+      var originalModel = inputCodeWorkspace.getCurrentFileModel()
+      var modifiedModel = outputWorkspace.getCurrentFileModel()
+      diffEditor = getMonaco().editor.createDiffEditor(editorContainer, {
+        automaticLayout: true
+      });
+      diffEditor.setModel({
+        original: originalModel,
+        modified: modifiedModel
+      });
+    })
+  }
 }

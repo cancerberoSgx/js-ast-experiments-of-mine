@@ -11,7 +11,8 @@ module.exports.___util__ =  {
   "regexpp": require("regexpp"),
   "ignore": require("ignore"),
   "./util/traverser": require("./util/traverser"), 
-  "./linter": require('./linter')
+  "./linter": require('./linter'), 
+  'require': require
 };
 if (typeof window!=='undefined'){
   window.___Linter__ = module.exports;

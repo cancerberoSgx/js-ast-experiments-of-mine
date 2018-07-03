@@ -60,11 +60,12 @@ export const examples: Example[] = [
     inputCodeFileName: 'ast-types1_inputCode.js',
     description: `Uses ast-types to transverse AST and modify it: adds an statement  \`var superArgs = Array.prototype.slice.call(arguments, 2);\` as first child of each function declaration body`
   },
+  
   {
-    name: 'eslint/semi-custom-445.js',
-    programFileName: 'eslint/semi-custom-445.js',
-    inputCodeFileName: 'eslint/semi-custom-445.js',
-    description: `first attempt to eval a eslint rule (semi)`
+    name: 'eslint/semi.js',
+    programFileName: 'eslint/semi.js',
+    inputCodeFileName: 'eslint/semi_inputCode.js',
+    description: `eslint rule "semi" slightly hacked so it works here`
   },  
  
 ]
@@ -76,3 +77,11 @@ function buildJsCodeMode(programFileName:string): Example{
     description: programFileName
   }
 }
+
+// function buildGenericExample(programFileName:string): Example{
+//   return {
+//     name: programFileName, programFileName, 
+//     inputCodeFileName: programFileName.replace('.js', '_inputCode.js'), 
+//     description: programFileName
+//   }
+// }

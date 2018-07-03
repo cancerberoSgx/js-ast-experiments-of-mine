@@ -2,7 +2,6 @@
 const Linter = require("./eslintFacade").Linter;
 
 const linter = new Linter();
-
 const messages = linter.verifyAndFix("var foo", {
     rules: {
         semi: 2
@@ -10,3 +9,4 @@ const messages = linter.verifyAndFix("var foo", {
 });
 
 console.log(messages);
+ 

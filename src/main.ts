@@ -1,18 +1,17 @@
-import { AbstractProject, Editor, loadMonacoAmdFromExternalCdn, renderEditor, Workspace, getMonacoModelFor, AbstractFile } from 'monaco-typescript-project-util';
+import * as monaco from 'monaco-editor';
+import { AbstractFile, AbstractProject, Editor, getMonacoModelFor, loadMonacoAmdFromExternalCdn, renderEditor, Workspace } from 'monaco-typescript-project-util';
 import ReactDOM from 'react-dom';
 import { examples } from './examples';
+import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 import { State } from './types';
 import layout from './ui/layout';
-import projectEditorContainer from './ui/projectEditorContainer';
-import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 import { verticalPaneChanged } from './ui/layoutPaneResizeUtil';
-import * as monaco from 'monaco-editor';
 
 type ProjectKind = 'outputProject' | 'inputProject' | 'inputCodeProject'
-abstract class JsAstAbstractWorkspace extends Workspace {
+
+class JsAstWorkspace extends Workspace {
   project: AbstractProject;
   currentFile: AbstractFile;
-  // protected projectKind: ProjectKind
   constructor(protected container: HTMLElement, protected projectKind: ProjectKind){
     super() 
   }
@@ -38,7 +37,7 @@ abstract class JsAstAbstractWorkspace extends Workspace {
     model.setValue(this.currentFile.content)
     return model
   }
-  abstract render(): void
+  // abstract render(): void
   projectUpdated(project: AbstractProject): Promise<any> {
     this.project = project
     this.currentFile = this.project.files[0]
@@ -48,21 +47,8 @@ abstract class JsAstAbstractWorkspace extends Workspace {
     this.render()
     return Promise.resolve()
   }
-}
 
-export class InputProjectWorkspace extends JsAstAbstractWorkspace {
-  // protected projectKind: ProjectKind = 'inputProject'
-  render() {
-    ReactDOM.render(projectEditorContainer(getState(), this.project, this.currentFile), this.container)
-  }
-}
-
-export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
-  // protected projectKind: ProjectKind = 'outputProject'
   protected editor: Editor;
-  // constructor(protected container: HTMLElement, protected projectKind: ProjectKind){
-  //   super(container)
-  // }
   render() {
     if (!this.editor) {
       this.editor = renderEditor({
@@ -82,9 +68,6 @@ export class OutputProjectWorkspace extends JsAstAbstractWorkspace {
   }
 }
 
-// export class InputCodeProjectWorkspace extends OutputProjectWorkspace {
-//   protected projectKind: ProjectKind = 'inputCodeProject'
-// }
 
 
 let state: State
@@ -108,13 +91,13 @@ loadMonacoAmdFromExternalCdn('https://cdnjs.cloudflare.com/ajax/libs/monaco-edit
 // a skeleton layout that will define the containers for our two workspaces. 
 ReactDOM.render(layout(state), document.getElementById('mainApplicationContainer'))
 
-export const programCodeWorkspace = new InputProjectWorkspace(
+export const programCodeWorkspace = new JsAstWorkspace(
   document.getElementById('inputWorkspaceContainer'), 'inputProject')
 
-export const outputWorkspace = new OutputProjectWorkspace(
+export const outputWorkspace = new JsAstWorkspace(
   document.getElementById('outputWorkspaceContainer'), 'outputProject')
 
-export const inputCodeWorkspace = new OutputProjectWorkspace(
+export const inputCodeWorkspace = new JsAstWorkspace(
   document.getElementById('inputCodeWorkspaceContainer'), 'inputCodeProject')
 
 // we start the input workspace only, when is ready we render it with the input file
@@ -125,14 +108,3 @@ programCodeWorkspace.setup()
       .then(() => inputCodeWorkspace.projectUpdated(getInputCodeProjectFor(getState().selectedExample)))
       .then(() => setTimeout(() => verticalPaneChanged(0), 200))
   }) 
-
-
-// import * as eslint from 'eslintbro'
-
-
-// console.log('slint.Linter', eslint.newLinter(), eslint.require('./ast-utils'))
-
-// const linter = eslint.newLinter()
-
-
-// const a = eslint.require('')
