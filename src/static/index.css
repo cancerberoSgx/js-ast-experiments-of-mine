@@ -53,16 +53,17 @@
   }
 } 
 .workspace-label{ 
-font-size: 0.9em;
-font-weight: bold;
-color: black;
-backgorund-color: #dddddd; 
-opacity: 0.7;
-float: right;
-z-index: 2;
-position: absolute;
-margin-left: 60%;
-font-style: italic;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: black;
+  margin-top: -4px;
+  opacity: 0.7;
+  float: right;
+  z-index: 2;
+  position: absolute;
+  margin-left: 60%;
+  font-style: italic;
+  box-shadow: 3px #000
 }
 .dropdown-item.show{
   background-color: #adeded

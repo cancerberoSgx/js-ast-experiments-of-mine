@@ -85,6 +85,29 @@ export const examples: Example[] = [
     ],
   },
   {
+    name: 'ast-types print AST of TypeScript code',
+    programFileName: 'astTypesPrintTsAST.js',
+    inputCodeFileName: 'recast_parsingTs_inputCode.ts',
+    outputCodeFileName: 'astTypesPrintTsAST_output.txt',
+    description: "Will transverse the whole AST of given TypeScript code and print it pretty",
+    tags: [
+      {
+        tag: 'difficulty',
+        values: ['easy'],
+      },
+      {
+        tag: 'technology',
+        values: ['recast', 'ast-types']
+      },
+      {
+        tag: 'language',
+        values: ['TypeScript']
+      }
+    ],
+  },
+
+
+  {
     name: 'recast JavaScript simple 1',
     programFileName: 'recast1.js',
     inputCodeFileName: 'recast1_inputCode.js',

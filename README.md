@@ -1,5 +1,7 @@
 # [JavaScript AST Playground](https://cancerberosgx.github.io/js-ast-experiments-of-mine/)
 
+[JavaScript AST Playground](https://cancerberosgx.github.io/js-ast-experiments-of-mine/)
+
  * Explore a collection of working examples using technologies related to JavaScript / TypeScript source code parsing, AST, transformations, etc. 
  * Modify the examples, run them again, experiment, play...
  * A playground 100% in the browser
@@ -34,3 +36,7 @@ npm run dev
 # Build production bundle
 
 `npm run build-production` : will generate docs/ folder with working app.
+
+# TODO / Roadmap 
+
+https://github.com/cancerberoSgx/js-ast-experiments-of-mine/blob/master/TODO.md
