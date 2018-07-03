@@ -1,4 +1,5 @@
 import { AbstractProject } from 'monaco-typescript-project-util';
+import { ExampleTagName } from './examples';
 
 export interface JsAstExampleOptions {
   code: string
@@ -9,13 +10,17 @@ export interface JsAstExampleResult {
 }
 export type JsAstExampleExecute = (args: JsAstExampleOptions) => JsAstExampleResult
 export interface Example {
-  // execute: JsAstExampleExecute,
   description: string
   name: string
   programFileName: string
   inputCodeFileName: string
-  outputCodeFileName?: string
+  outputCodeFileName?: string,
+  tags?: {
+    tag: ExampleTagName, 
+    values: string[] 
+  } [] 
 }
+
 export interface State {
   inputProject?: AbstractProject
   outputProject?: AbstractProject

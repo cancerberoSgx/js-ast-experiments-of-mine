@@ -6,7 +6,7 @@ import navbar from './navbar';
 import whatsThisModal from './modal/whatsThisModal';
 
 import SplitPane from 'react-split-pane';
-import { verticalPaneChanged, horizontalPaneChanged } from './layoutPaneResizeUtil';
+import { verticalPaneChanged, horizontalPaneChanged } from '../uiUtil';
 import diffModal from './modal/diffModal';
 import selectedExampleDescriptionModal from './modal/selectedExampleDescriptionModal';
 

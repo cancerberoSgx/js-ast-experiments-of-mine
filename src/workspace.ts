@@ -2,7 +2,8 @@ import * as monaco from 'monaco-editor';
 import { AbstractFile, AbstractProject, Editor, getMonacoModelFor, renderEditor, Workspace } from 'monaco-typescript-project-util';
 import { examples } from './examples';
 import { State } from './types';
-import { verticalPaneChanged } from './ui/layoutPaneResizeUtil';
+import { verticalPaneChanged } from './uiUtil';
+import { renderLayout } from './main';
 
 type ProjectKind = 'outputProject' | 'inputProject' | 'inputCodeProject'
 
@@ -42,6 +43,7 @@ export class JsAstWorkspace extends Workspace {
     state = Object.assign({}, state, {
       [this.projectKind]: this.project // object key assignment expression - es6 - cool! :)
     })
+    renderLayout()
     this.render()
     return Promise.resolve()
   }

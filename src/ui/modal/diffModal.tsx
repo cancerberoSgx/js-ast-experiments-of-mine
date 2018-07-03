@@ -28,8 +28,6 @@ export default (state: State) =>
  
  
 import * as monaco from 'monaco-editor'
-declare const $: any
-// let handlerCalled: boolean = false
 let $modal: any
 export function showDiffModalHandler() {
 

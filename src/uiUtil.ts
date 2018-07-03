@@ -1,4 +1,4 @@
-import { programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from '../workspace';
+import { programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from './workspace';
 
 let lastHeight: number = 0
 let lastWidth: number = 0

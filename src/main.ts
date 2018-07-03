@@ -2,8 +2,9 @@ import { loadMonacoAmdFromExternalCdn } from 'monaco-typescript-project-util';
 import ReactDOM from 'react-dom';
 import { getInputCodeProjectFor, getInputProjectFor } from './projectUtil';
 import layout from './ui/layout';
-import { verticalPaneChanged } from './ui/layoutPaneResizeUtil';
+import { verticalPaneChanged } from './uiUtil';
 import { createWorkspaces, getState, inputCodeWorkspace, programCodeWorkspace } from './workspace';
+import {  dispatchExecuteExample } from './controller';
 
 
 export function renderLayout() {
@@ -23,11 +24,15 @@ function startApplication() {
   // we start the input workspace only, when is ready we render it with the input file
   programCodeWorkspace.setup()
     .then(() => programCodeWorkspace.projectUpdated(getInputProjectFor(getState().selectedExample)))
-    .then(() => {
+    .then(() => 
       inputCodeWorkspace.setup()
         .then(() => inputCodeWorkspace.projectUpdated(getInputCodeProjectFor(getState().selectedExample)))
+        .then(()=>dispatchExecuteExample())
+        .then(()=>{
+          $('[data-submenu]').submenupicker();
+        })
         .then(() => setTimeout(() => verticalPaneChanged(0), 200))
-    })
+    )
 
 }
 

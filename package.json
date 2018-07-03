@@ -7,7 +7,7 @@
     "browserify": "browserify dist/src/main.js -t br-fs-to-json  -t [ babelify --presets [ react ] ] -o static/src.js",
     "build": "npm run tsc && npm run browserify",
     "copy-static": "mkdir -p static && cp -r src/static/* static",
-    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js packages/eslintbro/bundle/eslint.js static && ts-node scripts/hack_eslint.ts && npm run copy-examples ",
+    "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js packages/eslintbro/bundle/eslint.js node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.min.js node_modules/bootstrap-submenu/dist/css/bootstrap-submenu.min.css static && ts-node scripts/hack_eslint.ts && npm run copy-examples ",
     "copy-examples": "mkdir -p dist/src/examples && cp -r src/examples/* dist/src/examples",
     "watch-tsc": "watch -p \"src/**/*\" -c \"npm run copy-examples && npm run tsc \"",
     "watch-static": "watch -p \"src/static/**/*\" -c \"npm run copy-static\"",
@@ -47,6 +47,7 @@
   "dependencies": {
     "ast-types": "^0.11.5",
     "bootstrap": "^4.1.1",
+    "bootstrap-submenu": "^3.0.0",
     "eslintbro": "file:packages/eslintbro",
     "esprima": "^4.0.0",
     "filenamify": "^2.1.0",

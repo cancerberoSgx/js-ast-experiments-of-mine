@@ -1,7 +1,7 @@
 import React from 'react';
-import { dispatchExecuteExample, dispatchSelectExample } from '../controller';
-import { examples } from '../examples';
+import { dispatchExecuteExample } from '../controller';
 import { State } from '../types';
+import exampleMenu from './exampleMenu';
 import { showDiffModalHandler } from './modal/diffModal';
 
 export default (state: State) =>
@@ -17,17 +17,7 @@ export default (state: State) =>
           <a className={"nav-link executeLink"} href="#" id="dropdown02" onClick={() => dispatchExecuteExample()}>Execute!</a>
         </li>
 
-        <li className={"nav-item dropdown"}>
-          <a className={"nav-link dropdown-toggle"} href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</a>
-          <div className={"dropdown-menu"} aria-labelledby="dropdown08">
-            {examples.map(ex => 
-              <a className="dropdown-item" key={ex.name} 
-                onClick={() => dispatchSelectExample(ex.name)}
-                href="#" title={ex.description}>
-                {ex.name}
-              </a>)}
-          </div>
-        </li>
+        {exampleMenu()}
 
         <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
@@ -36,18 +26,6 @@ export default (state: State) =>
             <a className={"dropdown-item"} href="#selectedExampleDescription" data-toggle="modal" data-target="#selectedExampleDescriptionModal">Description of this Example</a>
           </div>
         </li>
-
-        <li className={"nav-item dropdown"}>
-          <a className={"nav-link dropdown-toggle"} href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search</a>
-          <div className={"dropdown-menu"} aria-labelledby="dropdown02">
-            <a className={"dropdown-item"} href="#saveProject" data-toggle="modal" data-target="#saveProjectModal">search examples</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">by name</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or tag</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">or language, etc</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">not implemented yet</a>
-          </div>
-        </li>
-
 
         <li className="nav-item">
           <a className="nav-link" data-toggle="modal" href="#" data-target="#whatsThisModal">About</a>
