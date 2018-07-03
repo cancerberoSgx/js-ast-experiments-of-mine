@@ -1,16 +1,18 @@
 module.exports = function (config) {
   const linter = eslint.newLinter()
-  linter.defineRule("semi-custom-445", rule);
+  linter.defineRule('semi-custom', rule);
   const messages = linter.verifyAndFix(config.code, {
-    "parserOptions": {
-      "ecmaVersion": 6
+    parserOptions: {
+      'ecmaVersion': 6
     },
     rules: {
-      "semi-custom-445": 2
+      'semi-custom': ["error", "never"] // or could be ["error", "always"]
     }
   });
-  return { output: messages.output }
-}
+  return { 
+    output: messages.output + `\n\n /*\n eslint output: \n${JSON.stringify(messages, null, 2)}}\n*/`
+  };
+};
 
 /**
  * @fileoverview Rule to flag missing semicolons.

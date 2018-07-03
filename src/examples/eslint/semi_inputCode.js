@@ -1,6 +1,3 @@
-// this source combine several styles with and without semicolon, it will be evaluated several times and 
-// printed by the semi.js script using different config (never and always) 
-
 var path = require('path');
 var fs = require('fs'); // must preserve this
 

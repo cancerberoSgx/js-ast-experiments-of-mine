@@ -5,8 +5,8 @@ import { getExamples, exampleTagNames, exampleTagValues } from '../examples';
 
 export default () =>
 
-  <li className={"nav-item dropdown"}>
-    <a className="nav-link dropdown-toggle" tabIndex={0} data-toggle="dropdown" data-submenu>Examples</a>
+  <li className={"nav-item dropdown"}> 
+    <a className="nav-link dropdown-toggle" href="#" tabIndex={0} data-toggle="dropdown" data-submenu>Examples</a>
 
     <div className="dropdown-menu">
 

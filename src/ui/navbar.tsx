@@ -3,6 +3,7 @@ import { dispatchExecuteExample } from '../controller';
 import { State } from '../types';
 import exampleMenu from './exampleMenu';
 import { showDiffModalHandler } from './modal/diffModal';
+import { resetLayout } from '../uiUtil';
 
 export default (state: State) =>
   <nav className={"navbar navbar-expand-md navbar-dark bg-dark"}>
@@ -18,12 +19,13 @@ export default (state: State) =>
         </li>
 
         {exampleMenu()}
-
+ 
         <li className={"nav-item dropdown"}>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown01">
             <a className={"dropdown-item"} href="#" onClick={showDiffModalHandler}>Diff Input &amp; Output</a>
             <a className={"dropdown-item"} href="#selectedExampleDescription" data-toggle="modal" data-target="#selectedExampleDescriptionModal">Description of this Example</a>
+            <a className={"dropdown-item"} href="#" onClick={resetLayout}>Reset Layout</a> 
           </div>
         </li>
 

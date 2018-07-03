@@ -1,13 +1,18 @@
-module.exports = function (config ) {
-  // parse typescript using recast. prints back the code and prints Ts AST in the console
-  var recast = require("recast");
-
-  // Parse the code using an interface similar to require("esprima").parse.
+// parse typescript using recast. 
+// then uses ast-types to rename a class and then
+// prints back the code and prints Ts AST in the console
+var recast = require("recast");
+var types = require('ast-types')
+module.exports = function (config) {
   var ast = recast.parse(config.code, {
     parser: require('recast/parsers/typescript')
   });
-
-  var output = recast.print(ast).code;
-
-  return { output }
+  types.visit(ast, {
+    visitClassDeclaration: function (path) {
+      var node = path.node;
+      node.id.name += 'Renamed'
+      this.traverse(path);
+    },
+  })
+  return { output: recast.print(ast).code }
 }

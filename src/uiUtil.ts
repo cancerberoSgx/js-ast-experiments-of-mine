@@ -4,7 +4,7 @@ let lastHeight: number = 0
 let lastWidth: number = 0
 
 export function horizontalPaneChanged(h: number) {
-  lastHeight = h || lastHeight || Math.trunc(window.innerHeight / 2)
+  lastHeight = h ===0 ?  Math.trunc(window.innerHeight / 2) : h 
   lastWidth = lastWidth || Math.trunc(window.innerWidth / 2)
 
   programCodeWorkspace.setEditorWidth(window.innerWidth)
@@ -19,7 +19,7 @@ export function horizontalPaneChanged(h: number) {
 }
 
 export function verticalPaneChanged(w: number) {
-  lastWidth = w || lastWidth || Math.trunc(window.innerWidth / 2)
+  lastWidth = w ===0 ?  Math.trunc(window.innerWidth / 2) : w
   lastHeight = lastHeight || Math.trunc(window.innerHeight / 2)
 
   outputWorkspace.setEditorWidth(window.innerWidth - lastWidth)
@@ -32,3 +32,9 @@ export function verticalPaneChanged(w: number) {
 
   // console.log('verticalPaneChanged',{lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight})
 } 
+
+
+export function resetLayout() {
+  verticalPaneChanged(0)
+  horizontalPaneChanged(0)
+}

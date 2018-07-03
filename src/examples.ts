@@ -5,6 +5,8 @@ export function getExamples() {
 }
 export const examples: Example[] = [
 
+  buildEslint('eslint/prefer-arrow-callback.js'),
+  
   buildJsCodeMode('js-codemod/arrow-function.js'),
   buildJsCodeMode('js-codemod/template-literals.js'),
 
@@ -39,7 +41,7 @@ export const examples: Example[] = [
       },
       {
         tag: 'language',
-        values: ['TypeScript']
+        values: ['JavaScript']
       }
     ],
   },
@@ -96,7 +98,7 @@ export const examples: Example[] = [
       },
       {
         tag: 'technology',
-        values: ['recast']
+        values: ['recast', 'ast-types']
       },
       {
         tag: 'language',
@@ -143,13 +145,20 @@ export const examples: Example[] = [
         values: ['JavaScript']
       }
     ],
-  },
+  }, 
+  buildEslint('eslint/rule.js'),
+  buildEslint('eslint/arrow-body-style.js'),
 
-  {
-    name: 'eslint/semi.js',
-    programFileName: 'eslint/semi.js',
-    inputCodeFileName: 'eslint/semi_inputCode.js',
-    description: `eslint rule "semi" slightly hacked so it works here`,
+
+]
+
+
+function buildEslint(programFileName:string, name: string = programFileName, description :string=programFileName): Example{
+return {
+    name: name,
+    programFileName: programFileName,
+    inputCodeFileName: programFileName.replace('.js', '_inputCode.js'),
+    description: description + '\n Note: This is the original eslint rule code, taken from eslint project. It is sightly modified so it can run in the browser and exporting the function these test expects instead of the rule definition object',
     tags: [
       {
         tag: 'difficulty',
@@ -164,9 +173,11 @@ export const examples: Example[] = [
         values: ['JavaScript']
       }
     ],
-  },
+  }
+}
 
-]
+
+
 
 function buildJsCodeMode(programFileName: string): Example {
   return {
