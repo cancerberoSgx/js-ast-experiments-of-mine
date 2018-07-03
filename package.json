@@ -4,7 +4,7 @@
   "description": "Online Playground for playing with JavaScript AST related technologies like recast, jscodeshift, ast-types, astring, acorn, escodegen, etc.",
   "scripts": {
     "tsc": "tsc",
-    "browserify": "cp src/util/eslintFacade.js dist/src/util/ && browserify dist/src/main.js -t br-fs-to-json  -t [ babelify --presets [ react ] ] -o static/src.js",
+    "browserify": "browserify dist/src/main.js -t br-fs-to-json  -t [ babelify --presets [ react ] ] -o static/src.js",
     "build": "npm run tsc && npm run browserify",
     "copy-static": "mkdir -p static && cp -r src/static/* static",
     "copy": "npm run copy-static && cp node_modules/bootstrap/dist/css/bootstrap.min.css node_modules/jquery/dist/jquery.slim.min.js node_modules/bootstrap/dist/js/bootstrap.min.js packages/eslintbro/bundle/eslint.js static && ts-node scripts/hack_eslint.ts && npm run copy-examples ",
@@ -16,7 +16,7 @@
     "browser-sync": "browser-sync start -s static -w -f \"static/*\"",
     "minify": "google-closure-compiler --js=static/src.js --js_output_file=static/src.min.js && mv static/src.min.js static/src.js",
     "build-production2": "rm -rf static docs2 src/build && npm run tsc && npm run copy && npx bankai build dist/src/main.js && rm -rf static dist docs2 && mv src/dist static && npm run copy && mv static docs2",
-    "build-production": "rm -rf static docs && npm run copy && npm run build && npm run minify && mv static docs",
+    "build-production": "rm -rf static docs && npm run copy && npm run build && npm run minify && mv static docs && npm run copy",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; find . -name \"package-lock.json\" -exec rm -rf '{}' +; ",
     "all": "npm run clean && npm i && npm run build-production",
     "postinstall": "ts-node scripts/hack1 && npm run copy"

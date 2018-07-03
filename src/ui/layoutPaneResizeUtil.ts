@@ -1,4 +1,4 @@
-import { programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from '../main';
+import { programCodeWorkspace, outputWorkspace, inputCodeWorkspace } from '../workspace';
 
 let lastHeight: number = 0
 let lastWidth: number = 0
@@ -15,7 +15,7 @@ export function horizontalPaneChanged(h: number) {
   outputWorkspace.setEditorHeight(window.innerHeight - lastHeight)
   inputCodeWorkspace.setEditorHeight(window.innerHeight - lastHeight)
 
-  console.log('horizontalPaneChanged', {lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight}) 
+  // console.log('horizontalPaneChanged', {lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight}) 
 }
 
 export function verticalPaneChanged(w: number) {
@@ -30,5 +30,5 @@ export function verticalPaneChanged(w: number) {
   inputCodeWorkspace.setEditorHeight(window.innerHeight - lastHeight)
   programCodeWorkspace.setEditorHeight(lastHeight)
 
-  console.log('verticalPaneChanged',{lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight})
+  // console.log('verticalPaneChanged',{lastWidth, lastHeight, windowWidth: window.innerWidth, windowHeight: window.innerHeight})
 } 

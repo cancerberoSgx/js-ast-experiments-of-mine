@@ -3,11 +3,12 @@ import { State } from '../types';
 import forkRibbon from './forkRibbon';
 import React from 'react';
 import navbar from './navbar';
-import whatsThisModal from './whatsThisModal';
+import whatsThisModal from './modal/whatsThisModal';
 
 import SplitPane from 'react-split-pane';
 import { verticalPaneChanged, horizontalPaneChanged } from './layoutPaneResizeUtil';
-import diffModal from './diffModal';
+import diffModal from './modal/diffModal';
+import selectedExampleDescriptionModal from './modal/selectedExampleDescriptionModal';
 
 export default (state: State) =>
   <div >
@@ -19,6 +20,7 @@ export default (state: State) =>
       className="primary"
       resizerStyle={{ background: '#000' }}
     >
+    
       <div id="inputWorkspaceContainer"></div>
 
       <SplitPane split="vertical"
@@ -37,5 +39,6 @@ export default (state: State) =>
     {forkRibbon()}
     {whatsThisModal(state)}
     {diffModal(state)}
+    {selectedExampleDescriptionModal()} 
   </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { State } from '../types';
+import { State } from '../../types';
 import { getMonaco } from 'monaco-typescript-project-util';
-import { inputCodeWorkspace, outputWorkspace } from '../main';
+import { inputCodeWorkspace, outputWorkspace } from '../../workspace';
 
 export default (state: State) =>
 

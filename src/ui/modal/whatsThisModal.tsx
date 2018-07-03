@@ -1,5 +1,5 @@
 import React from 'react';
-import { State } from '../types';
+import { State } from '../../types';
 
 export default (state: State)=>
 

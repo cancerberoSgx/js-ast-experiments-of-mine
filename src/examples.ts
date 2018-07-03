@@ -68,13 +68,13 @@ export const examples: Example[] = [
     description: `eslint rule "semi" slightly hacked so it works here`
   },  
  
-]
+] 
 
 function buildJsCodeMode(programFileName:string): Example{
   return {
     name: programFileName, programFileName, 
     inputCodeFileName: programFileName.replace('.js', '.input.js'), 
-    description: programFileName
+    description: programFileName + ' - This example was taken from https://github.com/cpojer/js-codemod/ as it is, just making minimal changes so it works here. The input code was also taken from there being being the input code using in the transformation\' unit test'
   }
 }
 

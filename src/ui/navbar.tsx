@@ -2,7 +2,7 @@ import React from 'react';
 import { dispatchExecuteExample, dispatchSelectExample } from '../controller';
 import { examples } from '../examples';
 import { State } from '../types';
-import { showDiffModalHandler } from './diffModal';
+import { showDiffModalHandler } from './modal/diffModal';
 
 export default (state: State) =>
   <nav className={"navbar navbar-expand-md navbar-dark bg-dark"}>
@@ -33,7 +33,7 @@ export default (state: State) =>
           <a className={"nav-link dropdown-toggle"} href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
           <div className={"dropdown-menu"} aria-labelledby="dropdown01">
             <a className={"dropdown-item"} href="#" onClick={showDiffModalHandler}>Diff Input &amp; Output</a>
-            <a className={"dropdown-item"} href="#loadProject" data-toggle="modal" data-target="#loadProjectModal">Other to come</a>
+            <a className={"dropdown-item"} href="#selectedExampleDescription" data-toggle="modal" data-target="#selectedExampleDescriptionModal">Description of this Example</a>
           </div>
         </li>
 
