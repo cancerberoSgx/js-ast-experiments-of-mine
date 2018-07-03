@@ -10,6 +10,7 @@ export function dispatchSelectExample(name: string) {
   getState().selectedExample = example
   programCodeWorkspace.projectUpdated(getInputProjectFor(example))
   inputCodeWorkspace.projectUpdated(getInputCodeProjectFor(example))
+  window.location.hash = encodeURIComponent(name)
   dispatchExecuteExample()
   // outputWorkspace.projectUpdated(createEmptyProject()) 
 } 

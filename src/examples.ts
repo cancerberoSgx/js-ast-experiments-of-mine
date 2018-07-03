@@ -4,6 +4,23 @@ export function getExamples() {
   return examples
 }
 export const examples: Example[] = [
+{name: 'eslint object-shorthand typescript', description: 'eslint object-shorthand rule implementation, configured to use the typescript-eslint-parser and provided TypeScript input code', programFileName: 'eslint/object-shorthand.js',
+inputCodeFileName: 'eslint/object-shorthand_inputCode.ts',
+tags: [
+  {
+    tag: 'difficulty',
+    values: ['hard'],
+  },
+  {
+    tag: 'technology',
+    values: ['eslint']
+  },
+  {
+    tag: 'language',
+    values: ['TypeScript']
+  }
+],}, 
+
 
   buildEslint('eslint/prefer-arrow-callback.js'),
   
@@ -203,7 +220,7 @@ function buildJsCodeMode(programFileName: string): Example {
 
 
 export type ExampleTagName = 'difficulty'|'technology'|'language'
-export const exampleTagNames : ExampleTagName[]= ['difficulty', 'language', 'technology']
+export const exampleTagNames : ExampleTagName[]= ['technology', 'difficulty', 'language']
 export const exampleTagValues = {
   'difficulty': ['easy', 'medium', 'hard'],
   'language': ['JavaScript', 'TypeScript'], 

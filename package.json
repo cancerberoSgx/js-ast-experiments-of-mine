@@ -19,7 +19,7 @@
     "build-production": "rm -rf static docs && npm run copy && npm run build && npm run minify && mv static docs && npm run copy",
     "clean": "find . -name \"node_modules\" -exec rm -rf '{}' +; find . -name \"package-lock.json\" -exec rm -rf '{}' +; ",
     "all": "npm run clean && npm i && npm run build-production",
-    "postinstall": "ts-node scripts/hack1 && npm run copy"
+    "postinstall": "ts-node scripts/hack1 && google-closure-compiler --js=packages/eslintbro/bundle/eslint.js --js_output_file=packages/eslintbro/bundle/eslint.min.js && mv packages/eslintbro/bundle/eslint.min.js packages/eslintbro/bundle/eslint.js && npm run copy"
   },
   "private": true,
   "keywords": [
@@ -41,7 +41,10 @@
       ]
     ]
   },
-  "repository": "https://github.com/cancerberoSgx/js-ast-experiments-of-mine",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cancerberoSgx/js-ast-experiments-of-mine.git"
+  },
   "author": "Sebastian Gurin",
   "license": "MIT",
   "dependencies": {
@@ -76,5 +79,13 @@
     "google-closure-compiler": "^20180610.0.2",
     "ts-node": "^7.0.0",
     "watch-cli": "^0.2.3"
+  },
+  "bugs": {
+    "url": "https://github.com/cancerberoSgx/js-ast-experiments-of-mine/issues"
+  },
+  "homepage": "https://github.com/cancerberoSgx/js-ast-experiments-of-mine#readme",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
   }
 }

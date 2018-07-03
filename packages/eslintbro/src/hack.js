@@ -12,7 +12,8 @@ module.exports.___util__ =  {
   "ignore": require("ignore"),
   "./util/traverser": require("./util/traverser"), 
   "./linter": require('./linter'), 
-  'require': require
+  'require': require, 
+  'typescript-eslint-parser': (function(){try {return require('typescript-eslint-parser')}catch(ex){return undefined}})() // /so it gests combined in the bundle
 };
 if (typeof window!=='undefined'){
   window.___Linter__ = module.exports;

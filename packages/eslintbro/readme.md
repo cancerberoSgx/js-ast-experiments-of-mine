@@ -91,3 +91,25 @@ console.log(messages);
 ```
 
 See src: test_installRuleAndSpec.js
+
+
+# extras
+
+## support typescript-eslint-parser
+
+ * before building , in eslint project execute: 
+ 
+   - npm i --save  typescript-eslint-parser
+   - npm i --save typescript 
+
+Heads up - typescript is very big, if you already are loading it you could use the facade included in this projecy: 
+ 
+   - npm i --save  typescript-eslint-parser
+   - npm i --save $THISFOLDER/typescript 
+
+
+
+
+## support pages that are a mess with define / require / etc
+
+ * in the case of ts-ast-types monac-editor and my hacks made a mess regarding require functions - if you dont perform the following hack eslint.js will fail (unrecognized require call) - basically is in scripts/hack_eslint and what it does is replacing all occurences of "require" for "require_2__hdhd_"

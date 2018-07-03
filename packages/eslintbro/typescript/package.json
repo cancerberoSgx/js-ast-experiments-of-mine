@@ -1,0 +1,17 @@
+{
+  "name": "typescript",
+  "version": "0.0.1",
+  "description": "is a facade to the 'ts' namespace - we want to bundle also typescript-eslint-parser that depends on 'typescript' which si huge and we already have it loaded - si we intall this package instead",
+  "main": "index.js",
+  "typings": "src/eslintbro.d.ts",
+  "scripts": {
+    "minify": "google-closure-compiler --js=bundle/eslint.js --js_output_file=bundle/eslint.min.js && mv bundle/eslint.min.js bundle/eslint.js"
+  },
+  "keywords": [
+    "eslint"
+  ],
+  "author": "Sebastian Gurin",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
